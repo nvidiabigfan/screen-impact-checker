@@ -1,0 +1,329 @@
+{
+  "screens": [
+    {
+      "screenId": "MAIN0000M01",
+      "screenName": "대표 홈 메인",
+      "channel": "대표홈페이지",
+      "url": "/static/",
+      "figmaNodeId": "16:421",
+      "products": ["신한SOL처음해외여행보험", "신한SOL처음운전자보험(무배당)", "신한SOL처음건강보험(무배당)(자동갱신형)", "신한SOL뇌·심장보험", "신한SOL암보험", "신한SOL면역질환보험", "신한SOL주택화재보험(무배당)", "신한SOL처음실손의료보험(무배당)", "신한SOL금융안심보험", "미니골프보험", "미니운동보험", "신한SOL해외장기체류보험", "신한SOL일본여행보험", "신한SOL국내여행보험", "미니생활보험"],
+      "exposureLocations": ["메인 상품 아이콘 그리드"],
+      "tags": ["메인", "전상품노출"]
+    },
+    {
+      "screenId": "PRD20000M01",
+      "screenName": "해외여행보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD20000M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음해외여행보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["해외여행"]
+    },
+    {
+      "screenId": "PRD20001M01",
+      "screenName": "일본여행보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD20001M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL일본여행보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["일본여행"]
+    },
+    {
+      "screenId": "PRD20002M01",
+      "screenName": "국내여행보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD20002M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL국내여행보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["국내여행"]
+    },
+    {
+      "screenId": "PRD30000M01",
+      "screenName": "해외장기체류보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD30000M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL해외장기체류보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["해외장기체류"]
+    },
+    {
+      "screenId": "PRD50000M01",
+      "screenName": "운전자보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD50000M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음운전자보험(무배당)"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["운전자"]
+    },
+    {
+      "screenId": "PRD70000M01",
+      "screenName": "건강보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD70000M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음건강보험(무배당)(자동갱신형)"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["건강"]
+    },
+    {
+      "screenId": "PRD70000M02",
+      "screenName": "뇌심장보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD70000M02.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL뇌·심장보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["뇌심장"]
+    },
+    {
+      "screenId": "PRD70000M03",
+      "screenName": "암보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD70000M03.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL암보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["암"]
+    },
+    {
+      "screenId": "PRD70000M04",
+      "screenName": "면역질환보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD70000M04.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL면역질환보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["면역질환"]
+    },
+    {
+      "screenId": "PRD80000M01",
+      "screenName": "화재보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD80000M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL주택화재보험(무배당)"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["화재"]
+    },
+    {
+      "screenId": "PRD12000M01",
+      "screenName": "실손의료보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD12000M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음실손의료보험(무배당)"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["실손"]
+    },
+    {
+      "screenId": "PRD11000M01",
+      "screenName": "금융안심보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD11000M01.html",
+      "figmaNodeId": "",
+      "products": ["신한SOL금융안심보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["금융안심"]
+    },
+    {
+      "screenId": "PRD11001M01",
+      "screenName": "미니골프보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD11001M01.html",
+      "figmaNodeId": "",
+      "products": ["미니골프보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["미니", "골프"]
+    },
+    {
+      "screenId": "PRD11004M01",
+      "screenName": "미니운동보험 상품안내",
+      "channel": "대표홈페이지",
+      "url": "/static/prd/PRD11004M01.html",
+      "figmaNodeId": "",
+      "products": ["미니운동보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["미니", "운동"]
+    },
+    {
+      "screenId": "DIR_HMEHMEHME_M01",
+      "screenName": "다이렉트 홈 메인",
+      "channel": "다이렉트",
+      "url": "#HMEHMEHME_M01",
+      "figmaNodeId": "20:566",
+      "products": ["신한SOL처음건강보험(무배당)(자동갱신형)", "신한SOL뇌·심장보험", "신한SOL암보험", "신한SOL면역질환보험", "신한SOL처음운전자보험(무배당)", "미니생활보험"],
+      "exposureLocations": ["상품 목록 섹션 (운동/생활 카테고리)"],
+      "tags": ["홈메인", "상품목록"]
+    },
+    {
+      "screenId": "DIR_HMEHMEHME_M01_1",
+      "screenName": "다이렉트 상품 목록",
+      "channel": "다이렉트",
+      "url": "#HMEHMEHME_M01",
+      "figmaNodeId": "20:553",
+      "products": ["신한SOL처음건강보험(무배당)(자동갱신형)", "신한SOL뇌·심장보험", "신한SOL암보험", "신한SOL면역질환보험", "신한SOL처음운전자보험(무배당)", "미니생활보험", "미니골프보험", "미니운동보험"],
+      "exposureLocations": ["전체 상품 카드 목록"],
+      "tags": ["상품목록"]
+    },
+    {
+      "screenId": "DIR_HMEHMEHME_M01_3",
+      "screenName": "다이렉트 마이 탭",
+      "channel": "다이렉트",
+      "url": "#HMEHMEHME_M01_3",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음건강보험(무배당)(자동갱신형)", "신한SOL처음운전자보험(무배당)", "신한SOL처음해외여행보험", "신한SOL주택화재보험(무배당)", "신한SOL처음실손의료보험(무배당)"],
+      "exposureLocations": ["마이탭 추천보험 콘텐츠 섹션 (스와이프)"],
+      "tags": ["마이탭", "추천보험", "개인화"]
+    },
+    {
+      "screenId": "DIR_HMEHMEHME_M03",
+      "screenName": "다이렉트 혜택 탭",
+      "channel": "다이렉트",
+      "url": "#HMEHMEHME_M03",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음운전자보험(무배당)", "신한SOL처음건강보험(무배당)(자동갱신형)"],
+      "exposureLocations": ["제휴 혜택 배너"],
+      "tags": ["혜택탭", "제휴"]
+    },
+    {
+      "screenId": "DIR_PDRFDIFDI_M01",
+      "screenName": "다이렉트 운전자보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRFDIFDI_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음운전자보험(무배당)"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["운전자"]
+    },
+    {
+      "screenId": "DIR_PDRSHISHI_M01",
+      "screenName": "다이렉트 종합건강보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRSHISHI_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음건강보험(무배당)(자동갱신형)"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["건강"]
+    },
+    {
+      "screenId": "DIR_PDRSHISHI_M02",
+      "screenName": "다이렉트 뇌심장보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRSHISHI_M02",
+      "figmaNodeId": "",
+      "products": ["신한SOL뇌·심장보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["뇌심장"]
+    },
+    {
+      "screenId": "DIR_PDRSHISHI_M03",
+      "screenName": "다이렉트 암보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRSHISHI_M03",
+      "figmaNodeId": "",
+      "products": ["신한SOL암보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["암"]
+    },
+    {
+      "screenId": "DIR_PDRSHISHI_M04",
+      "screenName": "다이렉트 면역질환보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRSHISHI_M04",
+      "figmaNodeId": "",
+      "products": ["신한SOL면역질환보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["면역질환"]
+    },
+    {
+      "screenId": "DIR_PDRSIISII_M01",
+      "screenName": "다이렉트 실손의료보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRSIISII_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음실손의료보험(무배당)"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["실손"]
+    },
+    {
+      "screenId": "DIR_PDRHFIHFI_M01",
+      "screenName": "다이렉트 주택화재보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRHFIHFI_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL주택화재보험(무배당)"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["화재"]
+    },
+    {
+      "screenId": "DIR_PDROTIOTI_M01",
+      "screenName": "다이렉트 해외여행보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDROTIOTI_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL처음해외여행보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["해외여행"]
+    },
+    {
+      "screenId": "DIR_PDROTIJPN_M01",
+      "screenName": "다이렉트 일본여행보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDROTIJPN_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL일본여행보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["일본여행"]
+    },
+    {
+      "screenId": "DIR_PDRDTIDTI_M01",
+      "screenName": "다이렉트 국내여행보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRDTIDTI_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL국내여행보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["국내여행"]
+    },
+    {
+      "screenId": "DIR_PDRCLICLI_M01",
+      "screenName": "다이렉트 미니생활보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRCLICLI_M01",
+      "figmaNodeId": "43:895",
+      "products": ["미니생활보험"],
+      "exposureLocations": ["히어로배너", "상품명 타이틀", "케어선택 섹션", "브랜드메시지"],
+      "tags": ["미니", "생활"]
+    },
+    {
+      "screenId": "DIR_PDRLTIOSI_M01",
+      "screenName": "다이렉트 해외장기체류보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRLTIOSI_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL해외장기체류보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["해외장기체류"]
+    },
+    {
+      "screenId": "DIR_PDRFINFIN_M01",
+      "screenName": "다이렉트 금융안심보험 상품메인",
+      "channel": "다이렉트",
+      "url": "#PDRFINFIN_M01",
+      "figmaNodeId": "",
+      "products": ["신한SOL금융안심보험"],
+      "exposureLocations": ["히어로배너", "상품명", "가입하기버튼"],
+      "tags": ["금융안심"]
+    }
+  ],
+  "meta": {
+    "lastUpdated": "2026-03-19",
+    "totalScreens": 33,
+    "note": "DIR_HMEHMEHME_M04는 오기입 → DIR_HMEHMEHME_M01_3(다이렉트 마이탭)으로 정정. 마이탭 추천보험 콘텐츠 섹션 추가."
+  }
+}
