@@ -3,16 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>화면 영향도 체커 — 신한EZ보험</title>
+  <title>신한EZ보험 IT기획 도구</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #f5f6fa; color: #222; }
-    header { background: #003087; color: #fff; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
-    header h1 { font-size: 18px; font-weight: 700; }
-    header span { font-size: 12px; opacity: 0.7; }
-    .container { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
 
-    /* 검색 */
+    /* ── Header ── */
+    header {
+      background: #003087; color: #fff;
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    header h1 { font-size: 18px; font-weight: 700; }
+    header span.sub { font-size: 12px; opacity: .7; margin-left: 10px; }
+    .back-btn {
+      background: rgba(255,255,255,.15); border: none; color: #fff;
+      padding: 7px 16px; border-radius: 7px; cursor: pointer; font-size: 13px;
+      display: none; font-family: inherit;
+    }
+    .back-btn:hover { background: rgba(255,255,255,.25); }
+
+    /* ── LANDING ── */
+    #landing { display: block; }
+    .landing-wrap { max-width: 820px; margin: 64px auto; padding: 0 24px; text-align: center; }
+    .landing-wrap .greeting { font-size: 14px; color: #888; margin-bottom: 48px; }
+    .tool-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .tool-card {
+      background: #fff; border-radius: 16px; padding: 40px 32px;
+      cursor: pointer; box-shadow: 0 2px 14px rgba(0,0,0,.08);
+      border: 2px solid transparent; text-align: left; transition: all .2s;
+    }
+    .tool-card:hover { border-color: #003087; transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,48,135,.15); }
+    .tool-card .tc-icon { font-size: 42px; margin-bottom: 16px; }
+    .tool-card h2 { font-size: 18px; font-weight: 700; color: #003087; margin-bottom: 10px; }
+    .tool-card p { font-size: 13px; color: #666; line-height: 1.7; }
+    .tool-card .tc-badge {
+      display: inline-block; margin-top: 16px; padding: 3px 12px;
+      background: #e8edf7; color: #003087; border-radius: 20px; font-size: 11px; font-weight: 600;
+    }
+
+    /* ── Views ── */
+    #view-checker, #view-errors { display: none; }
+
+    /* ════════════════════════════════
+       CHECKER STYLES (기존)
+    ════════════════════════════════ */
+    .container { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
     .search-box { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
     .search-box h2 { font-size: 14px; color: #555; margin-bottom: 12px; }
     .tag-area { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
@@ -23,21 +60,14 @@
     .search-input-wrap input { flex: 1; padding: 9px 14px; border: 1.5px solid #ddd; border-radius: 8px; font-size: 14px; }
     .search-input-wrap input:focus { outline: none; border-color: #003087; }
     .search-input-wrap button { padding: 9px 20px; background: #003087; color: #fff; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; }
-
-    /* 채널 필터 */
     .filter-bar { display: flex; gap: 8px; margin-bottom: 16px; }
     .filter-btn { padding: 6px 16px; border-radius: 6px; border: 1.5px solid #ccc; background: #fff; font-size: 13px; cursor: pointer; }
     .filter-btn.active { background: #e8edf7; border-color: #003087; color: #003087; font-weight: 600; }
-
-    /* 결과 */
     .result-count { font-size: 13px; color: #666; margin-bottom: 10px; }
     .result-count strong { color: #003087; }
-
-    /* 카드 */
     .card { background: #fff; border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.07); border-left: 4px solid #ccc; }
     .card.high { border-left-color: #e53935; }
     .card.medium { border-left-color: #fb8c00; }
-    .card.low { border-left-color: #43a047; }
     .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
     .badge-channel { padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
     .badge-channel.rep { background: #e3eaf7; color: #003087; }
@@ -45,72 +75,425 @@
     .badge-priority { padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
     .badge-priority.high { background: #ffebee; color: #e53935; }
     .badge-priority.medium { background: #fff3e0; color: #fb8c00; }
-    .badge-priority.low { background: #e8f5e9; color: #43a047; }
     .screen-id { font-size: 12px; color: #888; font-family: monospace; }
     .screen-name { font-size: 15px; font-weight: 700; color: #222; }
     .card-body { font-size: 13px; color: #555; line-height: 1.7; }
-    .card-body .label { font-weight: 600; color: #333; }
     .products-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
     .product-chip { padding: 3px 10px; background: #f0f4ff; border-radius: 12px; font-size: 12px; color: #1a3a7c; border: 1px solid #c5d0f0; }
     .product-chip.matched { background: #fff3cd; border-color: #ffc107; color: #856404; font-weight: 600; }
     .locations { margin-top: 4px; font-size: 12px; color: #777; }
-
-    /* 빈 결과 */
     .empty { text-align: center; padding: 60px 0; color: #aaa; font-size: 15px; }
-
-    /* 범례 */
     .legend { display: flex; gap: 16px; margin-bottom: 16px; font-size: 12px; color: #666; }
     .legend-item { display: flex; align-items: center; gap: 5px; }
     .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
     .legend-dot.high { background: #e53935; }
     .legend-dot.medium { background: #fb8c00; }
+
+    /* ════════════════════════════════
+       ERROR MANAGEMENT STYLES
+    ════════════════════════════════ */
+    .err-wrap { max-width: 900px; margin: 0 auto; padding: 20px 16px; }
+
+    /* Notion status */
+    .notion-status {
+      display: flex; align-items: center; gap: 10px;
+      background: #fff; border-radius: 10px; padding: 12px 18px;
+      margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); font-size: 13px;
+    }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #ffc107; flex-shrink: 0; transition: background .3s; }
+    .status-dot.ok { background: #4caf50; }
+    .status-dot.err { background: #e53935; }
+
+    /* Tabs */
+    .err-tabs { display: flex; gap: 2px; margin-bottom: 0; }
+    .err-tab {
+      padding: 10px 22px; border-radius: 10px 10px 0 0; border: none;
+      background: #dde1ea; cursor: pointer; font-size: 14px; color: #555;
+      font-family: inherit; transition: all .15s;
+    }
+    .err-tab.active { background: #fff; color: #003087; font-weight: 700; box-shadow: 0 -2px 0 #003087 inset; }
+    .err-tab-panel { display: none; background: #fff; border-radius: 0 10px 10px 10px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 20px; }
+    .err-tab-panel.active { display: block; }
+
+    /* Upload zone */
+    .upload-zone {
+      border: 2.5px dashed #c5d0f0; border-radius: 14px;
+      padding: 56px 20px; text-align: center; cursor: pointer;
+      background: #fafbff; transition: all .2s; margin-bottom: 16px;
+    }
+    .upload-zone:hover, .upload-zone.drag-over { border-color: #003087; background: #f0f4ff; }
+    .upload-zone .u-icon { font-size: 38px; margin-bottom: 12px; }
+    .upload-zone h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .upload-zone p { font-size: 13px; color: #888; }
+    .upload-zone input[type=file] { display: none; }
+
+    /* Preview */
+    .img-preview { display: none; text-align: center; margin-bottom: 16px; }
+    .img-preview img { max-height: 260px; max-width: 100%; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.12); }
+    .img-preview .rm-btn { display: block; margin: 8px auto 0; background: none; border: none; color: #e53935; cursor: pointer; font-size: 13px; font-family: inherit; }
+
+    /* Analyze button */
+    .analyze-btn {
+      width: 100%; padding: 14px; background: #003087; color: #fff;
+      border: none; border-radius: 10px; font-size: 15px; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: background .15s; margin-bottom: 16px;
+    }
+    .analyze-btn:hover:not(:disabled) { background: #00205e; }
+    .analyze-btn:disabled { background: #b0b8c8; cursor: not-allowed; }
+
+    /* Analysis result */
+    .analysis-result { display: none; }
+    .analysis-result h3 { font-size: 13px; color: #888; margin-bottom: 16px; font-weight: 500; }
+    .field-row { display: grid; grid-template-columns: 120px 1fr; gap: 8px; align-items: start; margin-bottom: 10px; }
+    .field-lbl { font-size: 13px; font-weight: 600; color: #555; padding-top: 9px; }
+    .field-val { border: 1.5px solid #ddd; border-radius: 8px; padding: 6px 10px; font-size: 13px; }
+    .field-val select, .field-val textarea {
+      width: 100%; border: none; background: transparent;
+      font-family: inherit; font-size: 13px; color: #222; outline: none; resize: vertical;
+    }
+    .notion-save-btn {
+      width: 100%; padding: 13px; background: #1a1a1a; color: #fff;
+      border: none; border-radius: 10px; font-size: 14px; font-weight: 600;
+      cursor: pointer; font-family: inherit; margin-top: 12px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .15s;
+    }
+    .notion-save-btn:hover:not(:disabled) { background: #333; }
+    .notion-save-btn:disabled { background: #aaa; cursor: not-allowed; }
+
+    /* Error list */
+    .err-item {
+      border-radius: 10px; padding: 14px 18px; margin-bottom: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07); border-left: 4px solid #ccc; background: #fff;
+    }
+    .err-item.Critical { border-left-color: #e53935; }
+    .err-item.High     { border-left-color: #fb8c00; }
+    .err-item.Medium   { border-left-color: #ffc107; }
+    .err-item.Low      { border-left-color: #4caf50; }
+    .err-item-hd { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; margin-bottom: 5px; }
+    .sev-badge { padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+    .sev-Critical { background: #ffebee; color: #e53935; }
+    .sev-High     { background: #fff3e0; color: #fb8c00; }
+    .sev-Medium   { background: #fffde7; color: #f9a825; }
+    .sev-Low      { background: #e8f5e9; color: #4caf50; }
+    .st-badge { padding: 2px 8px; border-radius: 10px; font-size: 11px; background: #e8edf7; color: #003087; }
+    .err-title-txt { font-size: 15px; font-weight: 700; }
+    .err-meta-txt { font-size: 12px; color: #888; margin-top: 3px; }
+
+    /* Schema table */
+    .schema-tbl { width: 100%; border-collapse: collapse; }
+    .schema-tbl th { background: #003087; color: #fff; padding: 10px 14px; font-size: 13px; text-align: left; }
+    .schema-tbl td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid #f0f0f0; }
+    .schema-tbl tr:last-child td { border-bottom: none; }
+    .schema-tbl tr:hover td { background: #f8f9ff; }
+
+    /* Settings */
+    .settings-section { background: #f8f9ff; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+    .settings-section h3 { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 14px; }
+    .set-row { margin-bottom: 12px; }
+    .set-row label { display: block; font-size: 12px; font-weight: 600; color: #666; margin-bottom: 5px; }
+    .set-row input {
+      width: 100%; padding: 8px 12px; border: 1.5px solid #ddd; border-radius: 8px;
+      font-size: 13px; font-family: monospace; background: #fff;
+    }
+    .set-row input:focus { outline: none; border-color: #003087; }
+    .set-save-btn {
+      padding: 9px 22px; background: #003087; color: #fff;
+      border: none; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: inherit;
+    }
+    .set-save-btn:hover { background: #00205e; }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; background: #222; color: #fff;
+      padding: 12px 20px; border-radius: 10px; font-size: 13px; z-index: 9999;
+      opacity: 0; transition: opacity .3s; pointer-events: none;
+    }
+    .toast.show { opacity: 1; }
+
+    @media (max-width: 600px) {
+      .tool-cards { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      .field-lbl { padding-top: 0; }
+    }
   </style>
 </head>
 <body>
 
+<!-- ══ HEADER ══ -->
 <header>
   <div>
-    <h1>🔍 화면 영향도 체커</h1>
-    <span>신한EZ보험 — 상품명/콘텐츠 변경 시 영향 화면 즉시 확인</span>
+    <h1 id="headerTitle">🏢 신한EZ보험 IT기획 도구</h1>
   </div>
+  <button class="back-btn" id="backBtn" onclick="goHome()">← 홈으로</button>
 </header>
 
-<div class="container">
-
-  <div class="search-box">
-    <h2>상품명 또는 키워드로 검색</h2>
-    <div class="tag-area" id="tagArea">
-      <span class="tag" onclick="tagClick(this, 'N pay')">N pay 이벤트 만료</span>
-      <span class="tag" onclick="tagClick(this, '쏘 Walk')">쏘 Walk 제휴 종료</span>
-      <span class="tag" onclick="tagClick(this, '쏘 Drive')">쏘 Drive 제휴 종료</span>
-      <span class="tag" onclick="tagClick(this, '미니생활보험')">미니생활보험 변경</span>
-      <span class="tag" onclick="tagClick(this, '실손')">실손보험 변경</span>
-      <span class="tag" onclick="tagClick(this, '금융안심')">금융안심보험 변경</span>
-      <span class="tag" onclick="tagClick(this, '마이탭')">마이탭 추천보험</span>
+<!-- ══ LANDING ══ -->
+<div id="landing">
+  <div class="landing-wrap">
+    <p class="greeting">신한EZ보험 IT기획팀 내부 도구 모음</p>
+    <div class="tool-cards">
+      <div class="tool-card" onclick="showView('checker')">
+        <div class="tc-icon">🔍</div>
+        <h2>화면 영향도 체커</h2>
+        <p>상품명·콘텐츠 변경 시 영향받는 화면을 즉시 식별합니다.<br>대표홈 15개 + 다이렉트 18개, 총 33개 화면 DB</p>
+        <span class="tc-badge">영향도 분석</span>
+      </div>
+      <div class="tool-card" onclick="showView('errors')">
+        <div class="tc-icon">📋</div>
+        <h2>고객 문의 에러 관리</h2>
+        <p>반복 문의 에러를 AI로 분류하고 Notion DB에 저장합니다.<br>메일 사진 업로드 → 자동 분류 → Notion 저장</p>
+        <span class="tc-badge">결함 관리</span>
+      </div>
     </div>
-    <div class="search-input-wrap">
-      <input type="text" id="searchInput" placeholder="상품명 또는 화면ID 검색 (예: 미니생활보험, DIR_HME...)" oninput="onInput()" onkeydown="if(event.key==='Enter') doSearch()">
-      <button onclick="doSearch()">검색</button>
-    </div>
   </div>
-
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="setChannel('all', this)">전체</button>
-    <button class="filter-btn" onclick="setChannel('대표홈페이지', this)">대표홈페이지</button>
-    <button class="filter-btn" onclick="setChannel('다이렉트', this)">다이렉트</button>
-  </div>
-
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot high"></div> HIGH — 즉시 수정</div>
-    <div class="legend-item"><div class="legend-dot medium"></div> MEDIUM — 연계 확인</div>
-  </div>
-
-  <div class="result-count" id="resultCount"></div>
-  <div id="results"></div>
 </div>
 
+<!-- ══ VIEW: 영향도 체커 ══ -->
+<div id="view-checker">
+  <div class="container">
+    <div class="search-box">
+      <h2>상품명 또는 키워드로 검색</h2>
+      <div class="tag-area" id="tagArea">
+        <span class="tag" onclick="tagClick(this,'N pay')">N pay 이벤트 만료</span>
+        <span class="tag" onclick="tagClick(this,'쏘 Walk')">쏘 Walk 제휴 종료</span>
+        <span class="tag" onclick="tagClick(this,'쏘 Drive')">쏘 Drive 제휴 종료</span>
+        <span class="tag" onclick="tagClick(this,'미니생활보험')">미니생활보험 변경</span>
+        <span class="tag" onclick="tagClick(this,'실손')">실손보험 변경</span>
+        <span class="tag" onclick="tagClick(this,'금융안심')">금융안심보험 변경</span>
+        <span class="tag" onclick="tagClick(this,'마이탭')">마이탭 추천보험</span>
+      </div>
+      <div class="search-input-wrap">
+        <input type="text" id="searchInput" placeholder="상품명 또는 화면ID 검색 (예: 미니생활보험, DIR_HME...)" oninput="onInput()" onkeydown="if(event.key==='Enter') doSearch()">
+        <button onclick="doSearch()">검색</button>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="setChannel('all',this)">전체</button>
+      <button class="filter-btn" onclick="setChannel('대표홈페이지',this)">대표홈페이지</button>
+      <button class="filter-btn" onclick="setChannel('다이렉트',this)">다이렉트</button>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot high"></div> HIGH — 즉시 수정</div>
+      <div class="legend-item"><div class="legend-dot medium"></div> MEDIUM — 연계 확인</div>
+    </div>
+    <div class="result-count" id="resultCount"></div>
+    <div id="results"></div>
+  </div>
+</div>
+
+<!-- ══ VIEW: 에러 관리 ══ -->
+<div id="view-errors">
+  <div class="err-wrap">
+
+    <!-- Notion 연결 상태 -->
+    <div class="notion-status">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">Notion 연결 상태 확인 중...</span>
+    </div>
+
+    <!-- Tabs -->
+    <div class="err-tabs">
+      <button class="err-tab active" onclick="switchErrTab('register',this)">메일 등록</button>
+      <button class="err-tab" onclick="switchErrTab('list',this)">에러 목록</button>
+      <button class="err-tab" onclick="switchErrTab('schema',this)">DB 스키마</button>
+      <button class="err-tab" onclick="switchErrTab('settings',this)">설정</button>
+    </div>
+
+    <!-- ── 메일 등록 ── -->
+    <div class="err-tab-panel active" id="tab-register">
+      <div class="upload-zone" id="uploadZone"
+           ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)"
+           onclick="document.getElementById('fileInput').click()">
+        <div class="u-icon">📷</div>
+        <h3>고객 문의 메일 사진 업로드</h3>
+        <p>클릭 또는 드래그 (JPG / PNG)</p>
+        <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
+      </div>
+
+      <div class="img-preview" id="imgPreview">
+        <img id="previewImg" src="" alt="미리보기">
+        <button class="rm-btn" onclick="removeImage()">✕ 이미지 제거</button>
+      </div>
+
+      <button class="analyze-btn" id="analyzeBtn" onclick="analyzeImage()" disabled>AI 분석 시작 →</button>
+
+      <div class="analysis-result" id="analysisResult">
+        <h3>AI 분석 결과 — 내용을 확인·수정 후 저장하세요</h3>
+        <div class="field-row">
+          <div class="field-lbl">문의 요약</div>
+          <div class="field-val"><textarea id="f-title" rows="2" placeholder="문의 요약"></textarea></div>
+        </div>
+        <div class="field-row">
+          <div class="field-lbl">시스템 영역</div>
+          <div class="field-val">
+            <select id="f-sysArea">
+              <option>SYS-01 청약/계약관리</option>
+              <option>SYS-02 보험료 계산/수납</option>
+              <option>SYS-99 기타</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-lbl">결함 유형</div>
+          <div class="field-val">
+            <select id="f-defectType">
+              <option>데이터 오류</option>
+              <option>프로세스 오류</option>
+              <option>인터페이스 오류</option>
+              <option>권한/인증 오류</option>
+              <option>배치/야간 오류</option>
+              <option>기타</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-lbl">심각도</div>
+          <div class="field-val">
+            <select id="f-severity">
+              <option>Critical</option>
+              <option>High</option>
+              <option selected>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-lbl">고객 영향</div>
+          <div class="field-val">
+            <select id="f-custImpact">
+              <option>다수 민원 발생</option>
+              <option>개별 민원</option>
+              <option>불편·문의 수준</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-lbl">시스템 영향</div>
+          <div class="field-val">
+            <select id="f-sysImpact">
+              <option>전체/광범위 장애</option>
+              <option>특정 기능 장애</option>
+              <option>경미</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-lbl">원인 분석</div>
+          <div class="field-val"><textarea id="f-cause" rows="3" placeholder="추정 원인"></textarea></div>
+        </div>
+        <div class="field-row">
+          <div class="field-lbl">임시 조치</div>
+          <div class="field-val"><textarea id="f-workaround" rows="2" placeholder="Workaround"></textarea></div>
+        </div>
+        <div class="field-row">
+          <div class="field-lbl">상태</div>
+          <div class="field-val">
+            <select id="f-status">
+              <option selected>접수</option>
+              <option>분석 중</option>
+              <option>대책 수립</option>
+              <option>해결 완료</option>
+            </select>
+          </div>
+        </div>
+        <button class="notion-save-btn" id="saveBtn" onclick="saveToNotion()">
+          <span>📥</span> Notion DB 저장
+        </button>
+      </div>
+    </div>
+
+    <!-- ── 에러 목록 ── -->
+    <div class="err-tab-panel" id="tab-list">
+      <div id="errListContent">
+        <div class="empty">Notion에서 불러오는 중...</div>
+      </div>
+    </div>
+
+    <!-- ── DB 스키마 ── -->
+    <div class="err-tab-panel" id="tab-schema">
+      <table class="schema-tbl">
+        <thead><tr><th>필드명</th><th>유형</th><th>옵션/설명</th></tr></thead>
+        <tbody>
+          <tr><td>문의 요약</td><td>Title</td><td>페이지 제목</td></tr>
+          <tr><td>시스템 영역</td><td>Select</td><td>SYS-01 청약/계약관리 · SYS-02 보험료 계산/수납 · SYS-99 기타</td></tr>
+          <tr><td>결함 유형</td><td>Select</td><td>데이터 오류 · 프로세스 오류 · 인터페이스 오류 · 권한/인증 오류 · 배치/야간 오류 · 기타</td></tr>
+          <tr><td>심각도</td><td>Select</td><td>Critical · High · Medium · Low</td></tr>
+          <tr><td>고객 영향</td><td>Select</td><td>다수 민원 발생 · 개별 민원 · 불편·문의 수준</td></tr>
+          <tr><td>시스템 영향</td><td>Select</td><td>전체/광범위 장애 · 특정 기능 장애 · 경미</td></tr>
+          <tr><td>원인 분석</td><td>Rich Text</td><td>—</td></tr>
+          <tr><td>임시 조치</td><td>Rich Text</td><td>Workaround</td></tr>
+          <tr><td>근본 원인 제거</td><td>Rich Text</td><td>—</td></tr>
+          <tr><td>재발 방지 프로세스</td><td>Rich Text</td><td>—</td></tr>
+          <tr><td>담당자/일정</td><td>Rich Text</td><td>—</td></tr>
+          <tr><td>상태</td><td>Select</td><td>접수 · 분석 중 · 대책 수립 · 해결 완료</td></tr>
+          <tr><td>등록일</td><td>Date</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:14px; font-size:12px; color:#888;">
+        Notion DB ID: <code style="background:#f0f0f0; padding:2px 6px; border-radius:4px;">69d6f14353fe46a9a01ce43c7379ccb3</code>
+      </p>
+    </div>
+
+    <!-- ── 설정 ── -->
+    <div class="err-tab-panel" id="tab-settings">
+      <div class="settings-section">
+        <h3>🔗 Notion 연동</h3>
+        <div class="set-row">
+          <label>Notion Integration Token</label>
+          <input type="password" id="set-notionToken" placeholder="secret_..." autocomplete="off">
+        </div>
+        <div class="set-row">
+          <label>Notion DB ID</label>
+          <input type="text" id="set-notionDbId" value="69d6f14353fe46a9a01ce43c7379ccb3">
+        </div>
+        <button class="set-save-btn" onclick="saveSettings()">저장 및 연결 확인</button>
+      </div>
+      <div class="settings-section">
+        <h3>🤖 Claude API (Vision 분석용)</h3>
+        <div class="set-row">
+          <label>Claude API Key</label>
+          <input type="password" id="set-claudeKey" placeholder="sk-ant-..." autocomplete="off">
+        </div>
+        <button class="set-save-btn" onclick="saveSettings()">저장</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-// ── 인라인 DB ──────────────────────────────────────────────
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+function showView(view) {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('view-checker').style.display = 'none';
+  document.getElementById('view-errors').style.display = 'none';
+  document.getElementById('backBtn').style.display = 'block';
+  if (view === 'checker') {
+    document.getElementById('view-checker').style.display = 'block';
+    document.getElementById('headerTitle').textContent = '🔍 화면 영향도 체커';
+  } else {
+    document.getElementById('view-errors').style.display = 'block';
+    document.getElementById('headerTitle').textContent = '📋 고객 문의 에러 관리';
+    initErrorView();
+  }
+}
+
+function goHome() {
+  document.getElementById('landing').style.display = 'block';
+  document.getElementById('view-checker').style.display = 'none';
+  document.getElementById('view-errors').style.display = 'none';
+  document.getElementById('backBtn').style.display = 'none';
+  document.getElementById('headerTitle').textContent = '🏢 신한EZ보험 IT기획 도구';
+}
+
+// ═══════════════════════════════════════
+// CHECKER — 인라인 DB
+// ═══════════════════════════════════════
 const DB_INLINE = [
   { screenId:"MAIN0000M01", screenName:"대표 홈 메인", channel:"대표홈페이지", url:"/static/", figmaNodeId:"16:421",
     products:["신한SOL처음해외여행보험","신한SOL처음운전자보험(무배당)","신한SOL처음건강보험(무배당)(자동갱신형)","신한SOL뇌·심장보험","신한SOL암보험","신한SOL면역질환보험","신한SOL주택화재보험(무배당)","신한SOL처음실손의료보험(무배당)","신한SOL금융안심보험","미니골프보험","미니운동보험","신한SOL해외장기체류보험","신한SOL일본여행보험","신한SOL국내여행보험","미니생활보험"],
@@ -149,7 +532,7 @@ const DB_INLINE = [
   { screenId:"DIR_HMEHMEHME_M01_1", screenName:"다이렉트 상품 목록", channel:"다이렉트", url:"#HMEHMEHME_M01", figmaNodeId:"20:553",
     products:["신한SOL처음건강보험(무배당)(자동갱신형)","신한SOL뇌·심장보험","신한SOL암보험","신한SOL면역질환보험","신한SOL처음운전자보험(무배당)","미니생활보험","미니골프보험","미니운동보험"],
     exposureLocations:["전체 상품 카드 목록"] },
-  { screenId:"DIR_HMEHMEHME_M01_3", screenName:"다이렉트 마이 탭", channel:"다이렉트", url:"#HMEHMEHME_M01_3", figmaNodeId:"",
+  { screenId:"DIR_HMEHMEHME_M01_3", screenName:"다이렉트 마이 탭", channel:"다이렉트", url:"#HMEHMEHME_M01_3",
     products:["신한SOL처음건강보험(무배당)(자동갱신형)","신한SOL처음운전자보험(무배당)","신한SOL처음해외여행보험","신한SOL주택화재보험(무배당)","신한SOL처음실손의료보험(무배당)"],
     exposureLocations:["마이탭 추천보험 콘텐츠 섹션 (스와이프)"] },
   { screenId:"DIR_HMEHMEHME_M03", screenName:"다이렉트 혜택 탭", channel:"다이렉트", url:"#HMEHMEHME_M03",
@@ -183,7 +566,6 @@ const DB_INLINE = [
     products:["신한SOL금융안심보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] }
 ];
 
-// HIGH 우선순위 화면 (상품 목록/메인 노출)
 const HIGH_SCREENS = new Set([
   "MAIN0000M01","DIR_HMEHMEHME_M01","DIR_HMEHMEHME_M01_1","DIR_HMEHMEHME_M01_3","DIR_PDRCLICLI_M01"
 ]);
@@ -214,56 +596,43 @@ function setChannel(ch, btn) {
 function doSearch() {
   const kw = document.getElementById('searchInput').value.trim().toLowerCase();
   currentKeyword = kw;
-  if (!kw) { document.getElementById('results').innerHTML = ''; document.getElementById('resultCount').textContent = ''; return; }
-
+  if (!kw) {
+    document.getElementById('results').innerHTML = '';
+    document.getElementById('resultCount').textContent = '';
+    return;
+  }
   let matched = DB_INLINE.filter(s => {
     const hit = s.products.some(p => p.toLowerCase().includes(kw)) ||
                 s.screenName.toLowerCase().includes(kw) ||
                 s.screenId.toLowerCase().includes(kw) ||
-                (s.exposureLocations || []).some(l => l.toLowerCase().includes(kw));
+                (s.exposureLocations||[]).some(l => l.toLowerCase().includes(kw));
     const chOk = currentChannel === 'all' || s.channel === currentChannel;
     return hit && chOk;
   });
-
-  // HIGH 먼저 정렬
-  matched.sort((a, b) => {
-    const pa = HIGH_SCREENS.has(a.screenId) ? 0 : 1;
-    const pb = HIGH_SCREENS.has(b.screenId) ? 0 : 1;
-    return pa - pb;
-  });
-
+  matched.sort((a,b) => (HIGH_SCREENS.has(a.screenId)?0:1) - (HIGH_SCREENS.has(b.screenId)?0:1));
   const total = matched.length;
   const highCnt = matched.filter(s => HIGH_SCREENS.has(s.screenId)).length;
   document.getElementById('resultCount').innerHTML =
     `<strong>${total}개</strong> 화면에서 노출 중 — <span style="color:#e53935">🔴 HIGH ${highCnt}개</span> 즉시 수정 필요`;
-
   if (total === 0) {
     document.getElementById('results').innerHTML = '<div class="empty">검색 결과가 없습니다</div>';
     return;
   }
-
   document.getElementById('results').innerHTML = matched.map(s => {
     const isHigh = HIGH_SCREENS.has(s.screenId);
     const priority = isHigh ? 'high' : 'medium';
-    const priorityLabel = isHigh ? 'HIGH' : 'MEDIUM';
     const chBadge = s.channel === '다이렉트' ? 'dir' : 'rep';
     const chLabel = s.channel === '다이렉트' ? '다이렉트' : '대표홈';
     const figmaLink = s.figmaNodeId
       ? `<a href="https://www.figma.com/board/Qo2n8H7LkzcOEcDLGjQl5P/?node-id=${s.figmaNodeId}" target="_blank" style="font-size:11px;color:#888;margin-left:8px;">🎨 FigJam</a>`
       : '';
-
-    const matchedProducts = s.products.filter(p => p.toLowerCase().includes(kw));
-    const chips = matchedProducts.map(p =>
-      `<span class="product-chip matched">${p}</span>`
-    ).join('');
-
-    return `
-    <div class="card ${priority}">
+    const chips = s.products.filter(p => p.toLowerCase().includes(kw))
+      .map(p => `<span class="product-chip matched">${p}</span>`).join('');
+    return `<div class="card ${priority}">
       <div class="card-header">
         <span class="badge-channel ${chBadge}">${chLabel}</span>
-        <span class="badge-priority ${priority}">${priorityLabel}</span>
-        <span class="screen-id">${s.screenId}</span>
-        ${figmaLink}
+        <span class="badge-priority ${priority}">${isHigh?'HIGH':'MEDIUM'}</span>
+        <span class="screen-id">${s.screenId}</span>${figmaLink}
       </div>
       <div class="screen-name">${s.screenName}</div>
       <div class="card-body">
@@ -272,6 +641,287 @@ function doSearch() {
       </div>
     </div>`;
   }).join('');
+}
+
+// ═══════════════════════════════════════
+// ERROR MANAGEMENT
+// ═══════════════════════════════════════
+let imageBase64 = null;
+let imageMediaType = 'image/jpeg';
+let settings = {};
+
+function loadSettings() {
+  try {
+    settings = JSON.parse(localStorage.getItem('ez-settings') || '{}');
+    const nt = document.getElementById('set-notionToken');
+    const nd = document.getElementById('set-notionDbId');
+    const ck = document.getElementById('set-claudeKey');
+    if (nt && settings.notionToken) nt.value = settings.notionToken;
+    if (nd && settings.notionDbId) nd.value = settings.notionDbId;
+    if (ck && settings.claudeKey) ck.value = settings.claudeKey;
+  } catch(e) {}
+}
+
+function saveSettings() {
+  settings = {
+    notionToken: document.getElementById('set-notionToken').value.trim(),
+    notionDbId:  document.getElementById('set-notionDbId').value.trim() || '69d6f14353fe46a9a01ce43c7379ccb3',
+    claudeKey:   document.getElementById('set-claudeKey').value.trim(),
+  };
+  localStorage.setItem('ez-settings', JSON.stringify(settings));
+  showToast('설정 저장 완료');
+  checkNotionStatus();
+}
+
+function initErrorView() {
+  loadSettings();
+  checkNotionStatus();
+}
+
+async function checkNotionStatus() {
+  const dot  = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
+  dot.className = 'status-dot';
+  text.textContent = 'Notion 연결 상태 확인 중...';
+  if (!settings.notionToken) {
+    dot.className = 'status-dot err';
+    text.textContent = '설정 탭에서 Notion Integration Token을 입력하세요';
+    return;
+  }
+  try {
+    const dbId = settings.notionDbId || '69d6f14353fe46a9a01ce43c7379ccb3';
+    const res = await fetch(`https://api.notion.com/v1/databases/${dbId}`, {
+      headers: {
+        'Authorization': `Bearer ${settings.notionToken}`,
+        'Notion-Version': '2022-06-28',
+      }
+    });
+    if (res.ok) {
+      dot.className = 'status-dot ok';
+      text.textContent = 'Notion 연결됨 — 반복결함 관리 DB';
+    } else {
+      dot.className = 'status-dot err';
+      text.textContent = `연결 실패 (${res.status}) — 설정을 확인하세요`;
+    }
+  } catch(e) {
+    dot.className = 'status-dot err';
+    text.textContent = '연결 오류 — CORS 또는 네트워크 문제';
+  }
+}
+
+function switchErrTab(tabId, btn) {
+  document.querySelectorAll('.err-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.err-tab-panel').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + tabId).classList.add('active');
+  if (tabId === 'list') loadErrList();
+}
+
+// ── 파일 업로드 ──
+function handleFile(e) {
+  const file = e.target.files[0];
+  if (file) processFile(file);
+}
+function dragOver(e)  { e.preventDefault(); document.getElementById('uploadZone').classList.add('drag-over'); }
+function dragLeave()  { document.getElementById('uploadZone').classList.remove('drag-over'); }
+function dropFile(e)  {
+  e.preventDefault();
+  document.getElementById('uploadZone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) processFile(file);
+}
+function processFile(file) {
+  imageMediaType = file.type || 'image/jpeg';
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    imageBase64 = ev.target.result.split(',')[1];
+    document.getElementById('previewImg').src = ev.target.result;
+    document.getElementById('imgPreview').style.display = 'block';
+    document.getElementById('uploadZone').style.display = 'none';
+    document.getElementById('analyzeBtn').disabled = false;
+    document.getElementById('analysisResult').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+function removeImage() {
+  imageBase64 = null;
+  document.getElementById('uploadZone').style.display = 'block';
+  document.getElementById('imgPreview').style.display = 'none';
+  document.getElementById('analysisResult').style.display = 'none';
+  document.getElementById('analyzeBtn').disabled = true;
+  document.getElementById('fileInput').value = '';
+}
+
+// ── AI 분석 ──
+async function analyzeImage() {
+  if (!imageBase64) return;
+  if (!settings.claudeKey) { showToast('설정 탭에서 Claude API Key를 먼저 입력하세요'); return; }
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled = true; btn.textContent = '분석 중...';
+  try {
+    const prompt = `이 보험사 고객 문의 메일 이미지를 분석해서 아래 JSON 형식으로만 반환해줘 (한국어):
+{
+  "title": "문의 요약 (1~2줄, 구체적으로)",
+  "sysArea": "SYS-01 청약/계약관리 또는 SYS-02 보험료 계산/수납 또는 SYS-99 기타",
+  "defectType": "데이터 오류 또는 프로세스 오류 또는 인터페이스 오류 또는 권한/인증 오류 또는 배치/야간 오류 또는 기타",
+  "severity": "Critical 또는 High 또는 Medium 또는 Low",
+  "custImpact": "다수 민원 발생 또는 개별 민원 또는 불편·문의 수준",
+  "sysImpact": "전체/광범위 장애 또는 특정 기능 장애 또는 경미",
+  "cause": "추정 원인 분석 (2~3문장)",
+  "workaround": "임시 조치 방안"
+}
+JSON만 반환. 마크다운 블록 없이.`;
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': settings.claudeKey,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1024,
+        messages: [{
+          role: 'user',
+          content: [
+            { type: 'image', source: { type: 'base64', media_type: imageMediaType, data: imageBase64 } },
+            { type: 'text', text: prompt }
+          ]
+        }]
+      })
+    });
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    const data = await res.json();
+    const raw = data.content[0].text.replace(/```[a-z]*\n?|\n?```/g, '').trim();
+    const json = JSON.parse(raw);
+    document.getElementById('f-title').value       = json.title || '';
+    setSelectVal('f-sysArea',     json.sysArea);
+    setSelectVal('f-defectType',  json.defectType);
+    setSelectVal('f-severity',    json.severity);
+    setSelectVal('f-custImpact',  json.custImpact);
+    setSelectVal('f-sysImpact',   json.sysImpact);
+    document.getElementById('f-cause').value       = json.cause || '';
+    document.getElementById('f-workaround').value  = json.workaround || '';
+    document.getElementById('f-status').value      = '접수';
+    document.getElementById('analysisResult').style.display = 'block';
+  } catch(e) {
+    showToast('분석 오류: ' + e.message);
+  } finally {
+    btn.disabled = false; btn.textContent = 'AI 분석 시작 →';
+  }
+}
+
+function setSelectVal(id, value) {
+  if (!value) return;
+  const sel = document.getElementById(id);
+  for (const opt of sel.options) {
+    if (opt.value === value || opt.text === value) { sel.value = opt.value; break; }
+  }
+}
+
+// ── Notion 저장 ──
+async function saveToNotion() {
+  const token = settings.notionToken;
+  const dbId  = settings.notionDbId || '69d6f14353fe46a9a01ce43c7379ccb3';
+  if (!token) { showToast('설정 탭에서 Notion Token을 입력하세요'); return; }
+  const title = document.getElementById('f-title').value.trim();
+  if (!title) { showToast('문의 요약을 입력하세요'); return; }
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = true; btn.innerHTML = '저장 중...';
+  try {
+    const today = new Date().toISOString().split('T')[0];
+    const body = {
+      parent: { database_id: dbId },
+      properties: {
+        "문의 요약":   { title:     [{ text: { content: title } }] },
+        "시스템 영역": { select:    { name: document.getElementById('f-sysArea').value } },
+        "결함 유형":   { select:    { name: document.getElementById('f-defectType').value } },
+        "심각도":      { select:    { name: document.getElementById('f-severity').value } },
+        "고객 영향":   { select:    { name: document.getElementById('f-custImpact').value } },
+        "시스템 영향": { select:    { name: document.getElementById('f-sysImpact').value } },
+        "상태":        { select:    { name: document.getElementById('f-status').value } },
+        "등록일":      { date:      { start: today } },
+        "원인 분석":   { rich_text: [{ text: { content: document.getElementById('f-cause').value } }] },
+        "임시 조치":   { rich_text: [{ text: { content: document.getElementById('f-workaround').value } }] },
+      }
+    };
+    const res = await fetch('https://api.notion.com/v1/pages', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Notion-Version': '2022-06-28',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) { const err = await res.json(); throw new Error(err.message || res.status); }
+    showToast('✅ Notion DB 저장 완료!');
+    removeImage();
+    document.getElementById('analysisResult').style.display = 'none';
+  } catch(e) {
+    showToast('저장 오류: ' + e.message);
+  } finally {
+    btn.disabled = false; btn.innerHTML = '<span>📥</span> Notion DB 저장';
+  }
+}
+
+// ── 에러 목록 로드 ──
+async function loadErrList() {
+  const token = settings.notionToken;
+  const dbId  = settings.notionDbId || '69d6f14353fe46a9a01ce43c7379ccb3';
+  const box   = document.getElementById('errListContent');
+  if (!token) {
+    box.innerHTML = '<div class="empty">설정 탭에서 Notion Token을 입력하세요</div>';
+    return;
+  }
+  box.innerHTML = '<div class="empty">불러오는 중...</div>';
+  try {
+    const res = await fetch(`https://api.notion.com/v1/databases/${dbId}/query`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Notion-Version': '2022-06-28',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sorts: [{ property: '등록일', direction: 'descending' }], page_size: 50 })
+    });
+    if (!res.ok) throw new Error(`오류: ${res.status}`);
+    const data = await res.json();
+    if (!data.results.length) {
+      box.innerHTML = '<div class="empty">등록된 에러가 없습니다</div>';
+      return;
+    }
+    box.innerHTML = data.results.map(page => {
+      const p    = page.properties;
+      const ttl  = p['문의 요약']?.title?.[0]?.text?.content || '(제목 없음)';
+      const sev  = p['심각도']?.select?.name || '';
+      const st   = p['상태']?.select?.name || '';
+      const area = p['시스템 영역']?.select?.name || '';
+      const type = p['결함 유형']?.select?.name || '';
+      const date = p['등록일']?.date?.start || '';
+      return `<div class="err-item ${sev}">
+        <div class="err-item-hd">
+          <span class="sev-badge sev-${sev}">${sev}</span>
+          <span class="st-badge">${st}</span>
+          <span style="font-size:11px;color:#888;">${area}</span>
+          <span style="font-size:11px;color:#bbb;">· ${type}</span>
+        </div>
+        <div class="err-title-txt">${ttl}</div>
+        <div class="err-meta-txt">${date}</div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    box.innerHTML = `<div class="empty" style="color:#e53935;">불러오기 실패: ${e.message}</div>`;
+  }
+}
+
+// ── Toast ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
 }
 </script>
 </body>
