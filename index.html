@@ -77,77 +77,108 @@
     .back-btn:hover { background: var(--blue-light); }
     .back-btn.show { display: flex; }
 
+    /* ══════════ PAGE TRANSITIONS ══════════ */
+    #landing, #view-checker, #view-errors {
+      transition: opacity .28s ease, transform .28s ease;
+    }
+    .page-exit {
+      opacity: 0 !important;
+      transform: translateY(-14px) !important;
+      pointer-events: none;
+    }
+    @keyframes pageEnter {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page-enter { animation: pageEnter .32s ease forwards; }
+
     /* ══════════ LANDING ══════════ */
     #landing { display: block; }
 
     .hero {
       background: linear-gradient(160deg, #dbeafe 0%, #eff5ff 55%, #f8fbff 100%);
-      padding: 80px 32px 72px;
-      text-align: center;
+      padding: 48px 48px 56px;
       position: relative; overflow: hidden;
+      max-width: 100%;
     }
     .hero::before {
       content: '';
       position: absolute; top: -80px; right: -80px;
       width: 420px; height: 420px; border-radius: 50%;
       background: radial-gradient(circle, rgba(0,48,135,.06) 0%, transparent 70%);
+      pointer-events: none;
     }
     .hero::after {
       content: '';
       position: absolute; bottom: -60px; left: -60px;
       width: 300px; height: 300px; border-radius: 50%;
       background: radial-gradient(circle, rgba(59,130,246,.08) 0%, transparent 70%);
+      pointer-events: none;
     }
+
+    /* 상단 버튼 행 */
+    .hero-tools {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; max-width: 900px; margin: 0 auto 48px;
+      position: relative; z-index: 1;
+    }
+    .tool-btn {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      display: flex; align-items: center; gap: 16px;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      border: 1.5px solid transparent;
+      transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s, border-color .2s;
+    }
+    .tool-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--blue-light);
+    }
+    .tb-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .tb-text { flex: 1; text-align: left; }
+    .tb-title { display: block; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .tb-sub   { display: block; font-size: 12px; color: var(--gray-text); }
+    .tb-arrow { font-size: 18px; color: var(--blue); font-weight: 700; flex-shrink: 0; transition: transform .2s; }
+    .tool-btn:hover .tb-arrow { transform: translateX(4px); }
+
+    /* 하단 본문: 텍스트 + 캐릭터 */
+    .hero-body {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 900px; margin: 0 auto;
+      gap: 24px; position: relative; z-index: 1;
+    }
+    .hero-text { flex: 1; }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 6px;
       background: rgba(0,48,135,.08); color: var(--blue);
       font-size: 12px; font-weight: 600;
       padding: 4px 14px; border-radius: var(--radius-pill);
-      margin-bottom: 20px;
-      letter-spacing: .3px;
+      margin-bottom: 18px; letter-spacing: .3px;
     }
     .hero h1 {
-      font-size: 38px; font-weight: 800; line-height: 1.2;
-      color: var(--text); margin-bottom: 14px; letter-spacing: -1px;
+      font-size: 40px; font-weight: 800; line-height: 1.2;
+      color: var(--text); margin-bottom: 14px; letter-spacing: -1.5px;
     }
     .hero h1 em { color: var(--blue); font-style: normal; }
-    .hero p {
-      font-size: 15px; color: var(--text-sub); line-height: 1.7;
-      max-width: 420px; margin: 0 auto 48px;
+    .hero-text p {
+      font-size: 15px; color: var(--text-sub); line-height: 1.75;
     }
-
-    .tool-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 20px; max-width: 760px; margin: 0 auto;
-      position: relative; z-index: 1;
-    }
-    .tool-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      cursor: pointer;
-      box-shadow: var(--shadow-md);
-      border: 1.5px solid transparent;
-      text-align: left;
-      transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s, border-color .22s;
-    }
-    .tool-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--blue-light);
-    }
-    .tc-icon-wrap {
-      width: 52px; height: 52px; border-radius: 14px;
-      background: var(--blue-pale);
+    .hero-char {
+      flex-shrink: 0; width: 280px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 26px; margin-bottom: 20px;
+      animation: floatChar 3.2s ease-in-out infinite;
     }
-    .tool-card h2 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-    .tool-card p { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
-    .tc-arrow {
-      display: inline-flex; align-items: center; gap: 5px;
-      margin-top: 20px; font-size: 13px; font-weight: 600;
-      color: var(--blue);
+    @keyframes floatChar {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
     }
 
     /* ══════════ VIEWS ══════════ */
@@ -433,23 +464,112 @@
 <!-- ══ LANDING ══ -->
 <div id="landing">
   <div class="hero">
-    <div class="hero-eyebrow">🏢 신한EZ손해보험 IT기획팀</div>
-    <h1>업무 효율을 높이는<br><em>IT기획 도구 모음</em></h1>
-    <p>화면 영향도 분석부터 고객 문의 에러 관리까지<br>한 곳에서 빠르게 처리하세요</p>
-    <div class="tool-grid">
-      <div class="tool-card" onclick="showView('checker')">
-        <div class="tc-icon-wrap">🔍</div>
-        <h2>화면 영향도 체커</h2>
-        <p>상품명·콘텐츠 변경 시 영향받는 화면을 즉시 식별합니다. 대표홈 15개 + 다이렉트 18개, 총 33개 화면 DB.</p>
-        <div class="tc-arrow">검색 시작 →</div>
+
+    <!-- 상단: 도구 선택 버튼 -->
+    <div class="hero-tools">
+      <div class="tool-btn" onclick="showView('checker')">
+        <div class="tb-icon">🔍</div>
+        <div class="tb-text">
+          <span class="tb-title">화면 영향도 체커</span>
+          <span class="tb-sub">대표홈 15개 + 다이렉트 18개, 총 33개 화면 DB</span>
+        </div>
+        <span class="tb-arrow">→</span>
       </div>
-      <div class="tool-card" onclick="showView('errors')">
-        <div class="tc-icon-wrap">📋</div>
-        <h2>고객 문의 에러 관리</h2>
-        <p>반복 문의 에러를 AI로 분류하고 Notion DB에 저장합니다. 메일 사진 업로드 → 자동 분류 → Notion 저장.</p>
-        <div class="tc-arrow">등록 시작 →</div>
+      <div class="tool-btn" onclick="showView('errors')">
+        <div class="tb-icon">📋</div>
+        <div class="tb-text">
+          <span class="tb-title">고객 문의 에러 관리</span>
+          <span class="tb-sub">AI 분류 → Notion DB 자동 저장</span>
+        </div>
+        <span class="tb-arrow">→</span>
       </div>
     </div>
+
+    <!-- 하단: 텍스트(좌) + 캐릭터(우) -->
+    <div class="hero-body">
+      <div class="hero-text">
+        <div class="hero-eyebrow">🏢 신한EZ손해보험 IT기획팀</div>
+        <h1>업무 효율을 높이는<br><em>IT기획 도구 모음</em></h1>
+        <p>화면 영향도 분석부터 고객 문의 에러 관리까지<br>한 곳에서 빠르게 처리하세요</p>
+      </div>
+
+      <!-- EZ곰 캐릭터 SVG -->
+      <div class="hero-char">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 370" width="260" height="322">
+          <defs>
+            <filter id="bs" x="-25%" y="-25%" width="150%" height="150%">
+              <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#003087" flood-opacity="0.11"/>
+            </filter>
+            <radialGradient id="fur" cx="40%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="100%" stop-color="#f0f5ff"/>
+            </radialGradient>
+          </defs>
+
+          <!-- 바닥 그림자 -->
+          <ellipse cx="150" cy="358" rx="72" ry="14" fill="#003087" opacity="0.08"/>
+
+          <!-- 몸통 -->
+          <ellipse cx="150" cy="272" rx="90" ry="96" fill="url(#fur)" filter="url(#bs)"/>
+
+          <!-- 머리 -->
+          <circle cx="150" cy="155" r="90" fill="url(#fur)" filter="url(#bs)"/>
+
+          <!-- 왼쪽 귀 -->
+          <circle cx="74" cy="80" r="31" fill="url(#fur)"/>
+          <circle cx="74" cy="80" r="18" fill="#dbeafe"/>
+
+          <!-- 오른쪽 귀 -->
+          <circle cx="226" cy="80" r="31" fill="url(#fur)"/>
+          <circle cx="226" cy="80" r="18" fill="#dbeafe"/>
+
+          <!-- 왼쪽 눈 -->
+          <circle cx="118" cy="145" r="14" fill="#111827"/>
+          <circle cx="123" cy="139" r="5" fill="white"/>
+
+          <!-- 오른쪽 눈 -->
+          <circle cx="182" cy="145" r="14" fill="#111827"/>
+          <circle cx="187" cy="139" r="5" fill="white"/>
+
+          <!-- 볼 홍조 -->
+          <ellipse cx="94"  cy="168" rx="19" ry="12" fill="#fca5a5" opacity="0.32"/>
+          <ellipse cx="206" cy="168" rx="19" ry="12" fill="#fca5a5" opacity="0.32"/>
+
+          <!-- 코 -->
+          <ellipse cx="150" cy="172" rx="9" ry="6" fill="#374151"/>
+
+          <!-- 입 -->
+          <path d="M 136 182 Q 150 198 164 182" stroke="#374151" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+          <!-- 파란 나비넥타이 (신한블루) -->
+          <path d="M 92 218 C 88 206 134 210 150 220 C 134 222 88 230 92 218 Z" fill="#003087"/>
+          <path d="M 208 218 C 212 206 166 210 150 220 C 166 222 212 230 208 218 Z" fill="#003087"/>
+          <circle cx="150" cy="219" r="9" fill="#1a4fa0"/>
+          <circle cx="150" cy="219" r="4" fill="#4a7fd4"/>
+
+          <!-- 왼쪽 앞발 -->
+          <ellipse cx="62" cy="298" rx="32" ry="22" fill="url(#fur)" filter="url(#bs)" transform="rotate(-18,62,298)"/>
+
+          <!-- 오른쪽 앞발 -->
+          <ellipse cx="238" cy="298" rx="32" ry="22" fill="url(#fur)" filter="url(#bs)" transform="rotate(18,238,298)"/>
+
+          <!-- 왼쪽 발 -->
+          <ellipse cx="108" cy="354" rx="36" ry="18" fill="url(#fur)"/>
+          <!-- 왼발 발가락 -->
+          <circle cx="88"  cy="348" r="7" fill="#e8edf5"/>
+          <circle cx="108" cy="344" r="7" fill="#e8edf5"/>
+          <circle cx="128" cy="348" r="7" fill="#e8edf5"/>
+
+          <!-- 오른쪽 발 -->
+          <ellipse cx="192" cy="354" rx="36" ry="18" fill="url(#fur)"/>
+          <!-- 오른발 발가락 -->
+          <circle cx="172" cy="348" r="7" fill="#e8edf5"/>
+          <circle cx="192" cy="344" r="7" fill="#e8edf5"/>
+          <circle cx="212" cy="348" r="7" fill="#e8edf5"/>
+        </svg>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -636,27 +756,57 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ═══ NAVIGATION ═══
+// ═══ NAVIGATION (페이드 트랜지션) ═══
 function showView(view) {
-  document.getElementById('landing').style.display = 'none';
-  document.getElementById('view-checker').style.display = 'none';
-  document.getElementById('view-errors').style.display = 'none';
-  document.getElementById('backBtn').classList.add('show');
-  if (view === 'checker') {
-    document.getElementById('view-checker').style.display = 'block';
-    document.getElementById('headerBadge').textContent = '화면 영향도 체커';
-  } else {
-    document.getElementById('view-errors').style.display = 'block';
-    document.getElementById('headerBadge').textContent = '고객 문의 에러 관리';
-    initErrorView();
-  }
+  const landing = document.getElementById('landing');
+  const target  = document.getElementById('view-' + view);
+
+  // 1) 랜딩 페이지 퇴장
+  landing.classList.add('page-exit');
+
+  setTimeout(() => {
+    landing.style.display = 'none';
+    landing.classList.remove('page-exit');
+
+    // 2) 목표 뷰 등장
+    target.style.display = 'block';
+    target.classList.add('page-enter');
+    setTimeout(() => target.classList.remove('page-enter'), 350);
+
+    // 헤더 업데이트
+    document.getElementById('backBtn').classList.add('show');
+    if (view === 'checker') {
+      document.getElementById('headerBadge').textContent = '화면 영향도 체커';
+    } else {
+      document.getElementById('headerBadge').textContent = '고객 문의 에러 관리';
+      initErrorView();
+    }
+  }, 250);
 }
+
 function goHome() {
-  document.getElementById('landing').style.display = 'block';
-  document.getElementById('view-checker').style.display = 'none';
-  document.getElementById('view-errors').style.display = 'none';
-  document.getElementById('backBtn').classList.remove('show');
-  document.getElementById('headerBadge').textContent = 'IT기획 도구';
+  const activeView = ['view-checker','view-errors']
+    .map(id => document.getElementById(id))
+    .find(el => el.style.display === 'block');
+
+  if (!activeView) return;
+
+  // 1) 현재 뷰 퇴장
+  activeView.classList.add('page-exit');
+
+  setTimeout(() => {
+    activeView.style.display = 'none';
+    activeView.classList.remove('page-exit');
+
+    // 2) 랜딩 등장
+    const landing = document.getElementById('landing');
+    landing.style.display = 'block';
+    landing.classList.add('page-enter');
+    setTimeout(() => landing.classList.remove('page-enter'), 350);
+
+    document.getElementById('backBtn').classList.remove('show');
+    document.getElementById('headerBadge').textContent = 'IT기획 도구';
+  }, 250);
 }
 
 // ═══ CHECKER DB ═══
