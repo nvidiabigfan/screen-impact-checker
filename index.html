@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ì íEZìí´ë³´í ìë¬´ í¨ì¨í ëêµ¬</title>
+  <title>신한EZ손해보험 업무 효율화 도구</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -41,7 +41,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ââââââââââ HEADER ââââââââââ */
+    /* ══════════ HEADER ══════════ */
     header {
       background: var(--white);
       border-bottom: 1px solid rgba(0,48,135,.08);
@@ -77,7 +77,7 @@
     .back-btn:hover { background: var(--blue-light); }
     .back-btn.show { display: flex; }
 
-    /* ââââââââââ PAGE TRANSITIONS ââââââââââ */
+    /* ══════════ PAGE TRANSITIONS ══════════ */
     #landing, #view-checker, #view-errors {
       transition: opacity .28s ease, transform .28s ease;
     }
@@ -92,7 +92,7 @@
     }
     .page-enter { animation: pageEnter .32s ease forwards; }
 
-    /* ââââââââââ LANDING ââââââââââ */
+    /* ══════════ LANDING ══════════ */
     #landing { display: block; }
 
     .hero {
@@ -116,7 +116,7 @@
       pointer-events: none;
     }
 
-    /* ìë¨ ë²í¼ í */
+    /* 상단 버튼 행 */
     .hero-tools {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px; max-width: 900px; margin: 0 auto 48px;
@@ -149,7 +149,7 @@
     .tb-arrow { font-size: 18px; color: var(--blue); font-weight: 700; flex-shrink: 0; transition: transform .2s; }
     .tool-btn:hover .tb-arrow { transform: translateX(4px); }
 
-    /* íë¨ ë³¸ë¬¸: íì¤í¸ + ìºë¦­í° */
+    /* 하단 본문: 텍스트 + 캐릭터 */
     .hero-body {
       display: flex; align-items: center; justify-content: space-between;
       max-width: 900px; margin: 0 auto;
@@ -181,10 +181,10 @@
       50%       { transform: translateY(-10px); }
     }
 
-    /* ââââââââââ VIEWS ââââââââââ */
+    /* ══════════ VIEWS ══════════ */
     #view-checker, #view-errors { display: none; }
 
-    /* ââââââââââ CHECKER ââââââââââ */
+    /* ══════════ CHECKER ══════════ */
     .container { max-width: 1060px; margin: 32px auto; padding: 0 24px; }
 
     .search-card {
@@ -267,7 +267,7 @@
     .locations { font-size: 12px; color: var(--gray-text); }
     .empty { text-align: center; padding: 80px 0; color: var(--gray-3); font-size: 15px; }
 
-    /* ââââââââââ ERROR MANAGEMENT ââââââââââ */
+    /* ══════════ ERROR MANAGEMENT ══════════ */
     .err-wrap { max-width: 860px; margin: 0 auto; padding: 28px 24px; }
 
     /* Status */
@@ -444,7 +444,7 @@
       .field-row { grid-template-columns: 1fr; }
       .field-lbl { padding-top: 0; }
       header { padding: 0 16px; }
-  /* ëª¨ë°ì¼ ë°ìí */
+  /* 모바일 반응형 */
   .hero { padding: 24px 16px 32px; }
   .hero-tools { grid-template-columns: 1fr; gap: 12px; margin-bottom: 28px; }
   .hero-body { flex-direction: column; align-items: flex-start; }
@@ -455,7 +455,7 @@
     }
   </style>
   <style>
-  /* ââ LOGIN OVERLAY ââ */
+  /* ══ LOGIN OVERLAY ══ */
   #login-overlay {
     position: fixed; inset: 0; z-index: 9999;
     background: #f0f2f5;
@@ -496,245 +496,245 @@
 </head>
 <body>
 
-<!-- ââ LOGIN OVERLAY ââ -->
+<!-- ══ LOGIN OVERLAY ══ -->
 <div id="login-overlay">
   <div class="login-box">
-    <div class="login-logo">ì íEZìí´ë³´í</div>
-    <div class="login-title">ìë¬´ í¨ì¨í ëêµ¬</div>
+    <div class="login-logo">신한EZ손해보험</div>
+    <div class="login-title">업무 효율화 도구</div>
     <div class="login-field">
-      <label>ìì´ë</label>
-      <input type="text" id="login-id" placeholder="ìì´ëë¥¼ ìë ¥íì¸ì" autocomplete="off">
+      <label>아이디</label>
+      <input type="text" id="login-id" placeholder="아이디를 입력하세요" autocomplete="off">
     </div>
     <div class="login-field">
-      <label>ë¹ë°ë²í¸</label>
-      <input type="password" id="login-pw" placeholder="ë¹ë°ë²í¸ë¥¼ ìë ¥íì¸ì" autocomplete="off">
+      <label>비밀번호</label>
+      <input type="password" id="login-pw" placeholder="비밀번호를 입력하세요" autocomplete="off">
     </div>
-    <button class="login-btn" onclick="doLogin()">ë¡ê·¸ì¸</button>
+    <button class="login-btn" onclick="doLogin()">로그인</button>
     <div class="login-error" id="login-err"></div>
-    <div class="login-footer">ëì§í¸íë«í¼í ì±ëê¸°í Cell</div>
+    <div class="login-footer">디지털플랫폼팀 채널기획 Cell</div>
   </div>
 </div>
 
 
-<!-- ââ HEADER ââ -->
+<!-- ══ HEADER ══ -->
 <header>
   <div class="logo">
     <div class="logo-icon">S</div>
-    <span class="logo-text" id="headerTitle">ì íEZìí´ë³´í</span>
-    <span class="logo-badge" id="headerBadge">ìë¬´ í¨ì¨í ëêµ¬</span>
+    <span class="logo-text" id="headerTitle">신한EZ손해보험</span>
+    <span class="logo-badge" id="headerBadge">업무 효율화 도구</span>
   </div>
   <button class="back-btn" id="backBtn" onclick="goHome()">
-    â íì¼ë¡
+    ← 홈으로
   </button>
 </header>
 
-<!-- ââ LANDING ââ -->
+<!-- ══ LANDING ══ -->
 <div id="landing">
   <div class="hero">
 
-    <!-- ìë¨: ëêµ¬ ì í ë²í¼ -->
+    <!-- 상단: 도구 선택 버튼 -->
     <div class="hero-tools">
       <div class="tool-btn" onclick="showView('checker')">
-        <div class="tb-icon">ð</div>
+        <div class="tb-icon">🔍</div>
         <div class="tb-text">
-          <span class="tb-title">íë©´ ìí¥ë ì²´ì»¤</span>
-          <span class="tb-sub">ëíí 15ê° + ë¤ì´ë í¸ 18ê°, ì´ 33ê° íë©´ DB</span>
+          <span class="tb-title">화면 영향도 체커</span>
+          <span class="tb-sub">대표홈 15개 + 다이렉트 18개, 총 33개 화면 DB</span>
         </div>
-        <span class="tb-arrow">â</span>
+        <span class="tb-arrow">→</span>
       </div>
       <div class="tool-btn" onclick="showView('errors')">
-        <div class="tb-icon">ð</div>
+        <div class="tb-icon">📋</div>
         <div class="tb-text">
-          <span class="tb-title">ê³ ê° ë¬¸ì ìë¬ ê´ë¦¬</span>
-          <span class="tb-sub">AI ë¶ë¥ â Notion DB ìë ì ì¥</span>
+          <span class="tb-title">고객 문의 에러 관리</span>
+          <span class="tb-sub">AI 분류 → Notion DB 자동 저장</span>
         </div>
-        <span class="tb-arrow">â</span>
+        <span class="tb-arrow">→</span>
       </div>
       <div class="tool-btn" onclick="openCalendar()">
-        <div class="tb-icon">ð</div>
+        <div class="tb-icon">📅</div>
         <div class="tb-text">
-          <span class="tb-title">êµ¬ê¸ ìºë¦°ë</span>
-          <span class="tb-sub">í ì¼ì  Â· ìë¬´ ì¼ì  ë°ë¡ê°ê¸°</span>
+          <span class="tb-title">구글 캘린더</span>
+          <span class="tb-sub">팀 일정 · 업무 일정 바로가기</span>
         </div>
-        <span class="tb-arrow">â</span>
+        <span class="tb-arrow">↗</span>
       </div>
     </div>
 
-    <!-- íë¨: íì¤í¸(ì¢) + ìºë¦­í°(ì°) -->
+    <!-- 하단: 텍스트(좌) + 캐릭터(우) -->
     <div class="hero-body">
       <div class="hero-text">
-        <div class="hero-eyebrow">ð¢ ëì§í¸íë«í¼í ì±ëê¸°í Cell</div>
-        <h1>ìë¬´ í¨ì¨ì ëì´ë<br><em>ìë¬´ í¨ì¨í ëêµ¬ ëª¨ì</em></h1>
-        <p>íë©´ ìí¥ë ë¶ì, ê³ ê° ë¬¸ì ìë¬ ê´ë¦¬, í ì¼ì  ì¡°ì¨ê¹ì§<br>í ê³³ìì ë¹ ë¥´ê² ì²ë¦¬íì¸ì</p>
+        <div class="hero-eyebrow">🏢 디지털플랫폼팀 채널기획 Cell</div>
+        <h1>업무 효율을 높이는<br><em>업무 효율화 도구 모음</em></h1>
+        <p>화면 영향도 분석, 고객 문의 에러 관리, 팀 일정 조율까지<br>한 곳에서 빠르게 처리하세요</p>
       </div>
 
-      <!-- EZ꼼 캐릭터 이미지 -->
+      <!-- EZ곰 캐릭터 이미지 -->
       <div class="hero-char">
-        <img src="Gemini_Generated_Image_guik8hguik8hguik.png" width="250" height="300" alt="EZ꼼 캐릭터" style="filter: drop-shadow(0 8px 14px rgba(0,48,135,0.11)); animation: float 3s ease-in-out infinite;">
+        <img src="Gemini_Generated_Image_guik8hguik8hguik.png" width="250" height="300" alt="EZ곰 캐릭터" style="filter: drop-shadow(0 8px 14px rgba(0,48,135,0.11)); animation: float 3s ease-in-out infinite;">
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- ââ VIEW: ìí¥ë ì²´ì»¤ ââ -->
+<!-- ══ VIEW: 영향도 체커 ══ -->
 <div id="view-checker">
   <div class="container">
     <div class="search-card">
-      <h2>ìíëª ëë í¤ìëë¡ ê²ì</h2>
+      <h2>상품명 또는 키워드로 검색</h2>
       <div class="tag-area" id="tagArea">
-        <span class="tag" onclick="tagClick(this,'N pay')">N pay ì´ë²¤í¸ ë§ë£</span>
-        <span class="tag" onclick="tagClick(this,'ì Walk')">ì Walk ì í´ ì¢ë£</span>
-        <span class="tag" onclick="tagClick(this,'ì Drive')">ì Drive ì í´ ì¢ë£</span>
-        <span class="tag" onclick="tagClick(this,'ë¯¸ëìíë³´í')">ë¯¸ëìíë³´í ë³ê²½</span>
-        <span class="tag" onclick="tagClick(this,'ì¤ì')">ì¤ìë³´í ë³ê²½</span>
-        <span class="tag" onclick="tagClick(this,'ê¸ìµìì¬')">ê¸ìµìì¬ë³´í ë³ê²½</span>
-        <span class="tag" onclick="tagClick(this,'ë§ì´í­')">ë§ì´í­ ì¶ì²ë³´í</span>
+        <span class="tag" onclick="tagClick(this,'N pay')">N pay 이벤트 만료</span>
+        <span class="tag" onclick="tagClick(this,'싘 Walk')">싘 Walk 제휴 종료</span>
+        <span class="tag" onclick="tagClick(this,'싘 Drive')">싘 Drive 제휴 종료</span>
+        <span class="tag" onclick="tagClick(this,'미니생활보험')">미니생활보험 변경</span>
+        <span class="tag" onclick="tagClick(this,'실손')">실손보험 변경</span>
+        <span class="tag" onclick="tagClick(this,'금융안심')">금융안심보험 변경</span>
+        <span class="tag" onclick="tagClick(this,'마이탭')">마이탭 추천보험</span>
       </div>
       <div class="search-row">
-        <input type="text" id="searchInput" placeholder="ìíëª ëë íë©´ID ê²ì (ì: ë¯¸ëìíë³´í, DIR_HME...)" oninput="onInput()" onkeydown="if(event.key==='Enter') doSearch()">
-        <button onclick="doSearch()">ê²ì</button>
+        <input type="text" id="searchInput" placeholder="상품명 또는 화면ID 검색 (예: 미니생활보험, DIR_HME...)" oninput="onInput()" onkeydown="if(event.key==='Enter') doSearch()">
+        <button onclick="doSearch()">검색</button>
       </div>
     </div>
     <div class="filter-bar">
-      <button class="filter-btn active" onclick="setChannel('all',this)">ì ì²´</button>
-      <button class="filter-btn" onclick="setChannel('ëíííì´ì§',this)">ëíííì´ì§</button>
-      <button class="filter-btn" onclick="setChannel('ë¤ì´ë í¸',this)">ë¤ì´ë í¸</button>
+      <button class="filter-btn active" onclick="setChannel('all',this)">전체</button>
+      <button class="filter-btn" onclick="setChannel('대표홈페이지',this)">대표홈페이지</button>
+      <button class="filter-btn" onclick="setChannel('다이렉트',this)">다이렉트</button>
     </div>
     <div class="legend">
-      <div class="legend-item"><div class="legend-dot high"></div> HIGH â ì¦ì ìì </div>
-      <div class="legend-item"><div class="legend-dot medium"></div> MEDIUM â ì°ê³ íì¸</div>
+      <div class="legend-item"><div class="legend-dot high"></div> HIGH — 즉시 수정</div>
+      <div class="legend-item"><div class="legend-dot medium"></div> MEDIUM — 연계 확인</div>
     </div>
     <div class="result-count" id="resultCount"></div>
     <div id="results"></div>
   </div>
 </div>
 
-<!-- ââ VIEW: ìë¬ ê´ë¦¬ ââ -->
+<!-- ══ VIEW: 에러 관리 ══ -->
 <div id="view-errors">
   <div class="err-wrap">
     <div class="notion-status">
       <div class="status-dot" id="statusDot"></div>
-      <span id="statusText">Notion ì°ê²° ìí íì¸ ì¤...</span>
+      <span id="statusText">Notion 연결 상태 확인 중...</span>
     </div>
     <div class="err-tabs">
-      <button class="err-tab active" onclick="switchErrTab('register',this)">ë©ì¼ ë±ë¡</button>
-      <button class="err-tab" onclick="switchErrTab('list',this)">ìë¬ ëª©ë¡</button>
-      <button class="err-tab" onclick="switchErrTab('schema',this)">DB ì¤í¤ë§</button>
-      <button class="err-tab" onclick="switchErrTab('settings',this)">ì¤ì </button>
+      <button class="err-tab active" onclick="switchErrTab('register',this)">메일 등록</button>
+      <button class="err-tab" onclick="switchErrTab('list',this)">에러 목록</button>
+      <button class="err-tab" onclick="switchErrTab('schema',this)">DB 스키마</button>
+      <button class="err-tab" onclick="switchErrTab('settings',this)">설정</button>
     </div>
 
-    <!-- ë©ì¼ ë±ë¡ -->
+    <!-- 메일 등록 -->
     <div class="err-panel active" id="tab-register">
       <div class="upload-zone" id="uploadZone"
            ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)"
            onclick="document.getElementById('fileInput').click()">
-        <div class="u-icon">ð·</div>
-        <h3>ê³ ê° ë¬¸ì ë©ì¼ ì¬ì§ ìë¡ë</h3>
-        <p>í´ë¦­ ëë ëëê·¸ (JPG / PNG)</p>
+        <div class="u-icon">📷</div>
+        <h3>고객 문의 메일 사진 업로드</h3>
+        <p>클릭 또는 드래그 (JPG / PNG)</p>
         <input type="file" id="fileInput" accept="image/*" onchange="handleFile(event)">
       </div>
       <div class="img-preview" id="imgPreview">
-        <img id="previewImg" src="" alt="ë¯¸ë¦¬ë³´ê¸°">
-        <button class="rm-btn" onclick="removeImage()">â ì´ë¯¸ì§ ì ê±°</button>
+        <img id="previewImg" src="" alt="미리보기">
+        <button class="rm-btn" onclick="removeImage()">✕ 이미지 제거</button>
       </div>
-      <button class="analyze-btn" id="analyzeBtn" onclick="analyzeImage()" disabled>AI ë¶ì ìì â</button>
+      <button class="analyze-btn" id="analyzeBtn" onclick="analyzeImage()" disabled>AI 분석 시작 →</button>
       <div class="analysis-result" id="analysisResult">
-        <h3>AI ë¶ì ê²°ê³¼ â íì¸Â·ìì  í ì ì¥</h3>
+        <h3>AI 분석 결과 — 확인·수정 후 저장</h3>
         <div class="field-row">
-          <div class="field-lbl">ë¬¸ì ìì½</div>
-          <div class="field-val"><textarea id="f-title" rows="2" placeholder="ë¬¸ì ìì½"></textarea></div>
+          <div class="field-lbl">문의 요약</div>
+          <div class="field-val"><textarea id="f-title" rows="2" placeholder="문의 요약"></textarea></div>
         </div>
         <div class="field-row">
-          <div class="field-lbl">ìì¤í ìì­</div>
+          <div class="field-lbl">시스템 영역</div>
           <div class="field-val"><select id="f-sysArea">
-            <option>SYS-01 ì²­ì½/ê³ì½ê´ë¦¬</option>
-            <option>SYS-02 ë³´íë£ ê³ì°/ìë©</option>
-            <option>SYS-99 ê¸°í</option>
+            <option>SYS-01 청약/계약관리</option>
+            <option>SYS-02 보험료 계산/수납</option>
+            <option>SYS-99 기타</option>
           </select></div>
         </div>
         <div class="field-row">
-          <div class="field-lbl">ê²°í¨ ì í</div>
+          <div class="field-lbl">결함 유형</div>
           <div class="field-val"><select id="f-defectType">
-            <option>ë°ì´í° ì¤ë¥</option><option>íë¡ì¸ì¤ ì¤ë¥</option>
-            <option>ì¸í°íì´ì¤ ì¤ë¥</option><option>ê¶í/ì¸ì¦ ì¤ë¥</option>
-            <option>ë°°ì¹/ì¼ê° ì¤ë¥</option><option>ê¸°í</option>
+            <option>데이터 오류</option><option>프로세스 오류</option>
+            <option>인터페이스 오류</option><option>권한/인증 오류</option>
+            <option>배치/야간 오류</option><option>기타</option>
           </select></div>
         </div>
         <div class="field-row">
-          <div class="field-lbl">ì¬ê°ë</div>
+          <div class="field-lbl">심각도</div>
           <div class="field-val"><select id="f-severity">
             <option>Critical</option><option>High</option>
             <option selected>Medium</option><option>Low</option>
           </select></div>
         </div>
         <div class="field-row">
-          <div class="field-lbl">ê³ ê° ìí¥</div>
+          <div class="field-lbl">고객 영향</div>
           <div class="field-val"><select id="f-custImpact">
-            <option>ë¤ì ë¯¼ì ë°ì</option><option>ê°ë³ ë¯¼ì</option><option>ë¶í¸Â·ë¬¸ì ìì¤</option>
+            <option>다수 민원 발생</option><option>개별 민원</option><option>불편·문의 수준</option>
           </select></div>
         </div>
         <div class="field-row">
-          <div class="field-lbl">ìì¤í ìí¥</div>
+          <div class="field-lbl">시스템 영향</div>
           <div class="field-val"><select id="f-sysImpact">
-            <option>ì ì²´/ê´ë²ì ì¥ì </option><option>í¹ì  ê¸°ë¥ ì¥ì </option><option>ê²½ë¯¸</option>
+            <option>전체/광범위 장애</option><option>특정 기능 장애</option><option>경미</option>
           </select></div>
         </div>
         <div class="field-row">
-          <div class="field-lbl">ìì¸ ë¶ì</div>
-          <div class="field-val"><textarea id="f-cause" rows="3" placeholder="ì¶ì  ìì¸"></textarea></div>
+          <div class="field-lbl">원인 분석</div>
+          <div class="field-val"><textarea id="f-cause" rows="3" placeholder="추정 원인"></textarea></div>
         </div>
         <div class="field-row">
-          <div class="field-lbl">ìì ì¡°ì¹</div>
+          <div class="field-lbl">임시 조치</div>
           <div class="field-val"><textarea id="f-workaround" rows="2" placeholder="Workaround"></textarea></div>
         </div>
         <div class="field-row">
-          <div class="field-lbl">ìí</div>
+          <div class="field-lbl">상태</div>
           <div class="field-val"><select id="f-status">
-            <option selected>ì ì</option><option>ë¶ì ì¤</option>
-            <option>ëì± ìë¦½</option><option>í´ê²° ìë£</option>
+            <option selected>접수</option><option>분석 중</option>
+            <option>대책 수립</option><option>해결 완료</option>
           </select></div>
         </div>
         <button class="notion-save-btn" id="saveBtn" onclick="saveToNotion()">
-          <span>ð¥</span> Notion DBì ì ì¥
+          <span>📥</span> Notion DB에 저장
         </button>
       </div>
     </div>
 
-    <!-- ìë¬ ëª©ë¡ -->
+    <!-- 에러 목록 -->
     <div class="err-panel" id="tab-list">
-      <div id="errListContent"><div class="empty">ë¶ë¬ì¤ë ì¤...</div></div>
+      <div id="errListContent"><div class="empty">불러오는 중...</div></div>
     </div>
 
-    <!-- DB ì¤í¤ë§ -->
+    <!-- DB 스키마 -->
     <div class="err-panel" id="tab-schema">
       <div class="schema-wrap">
         <table class="schema-tbl">
-          <thead><tr><th>íëëª</th><th>ì í</th><th>ìµì / ì¤ëª</th></tr></thead>
+          <thead><tr><th>필드명</th><th>유형</th><th>옵션 / 설명</th></tr></thead>
           <tbody>
-            <tr><td>ë¬¸ì ìì½</td><td>Title</td><td>íì´ì§ ì ëª©</td></tr>
-            <tr><td>ìì¤í ìì­</td><td>Select</td><td>SYS-01 ì²­ì½/ê³ì½ê´ë¦¬ Â· SYS-02 ë³´íë£ ê³ì°/ìë© Â· SYS-99 ê¸°í</td></tr>
-            <tr><td>ê²°í¨ ì í</td><td>Select</td><td>ë°ì´í° ì¤ë¥ Â· íë¡ì¸ì¤ ì¤ë¥ Â· ì¸í°íì´ì¤ ì¤ë¥ Â· ê¶í/ì¸ì¦ ì¤ë¥ Â· ë°°ì¹/ì¼ê° ì¤ë¥ Â· ê¸°í</td></tr>
-            <tr><td>ì¬ê°ë</td><td>Select</td><td>Critical Â· High Â· Medium Â· Low</td></tr>
-            <tr><td>ê³ ê° ìí¥</td><td>Select</td><td>ë¤ì ë¯¼ì ë°ì Â· ê°ë³ ë¯¼ì Â· ë¶í¸Â·ë¬¸ì ìì¤</td></tr>
-            <tr><td>ìì¤í ìí¥</td><td>Select</td><td>ì ì²´/ê´ë²ì ì¥ì  Â· í¹ì  ê¸°ë¥ ì¥ì  Â· ê²½ë¯¸</td></tr>
-            <tr><td>ìì¸ ë¶ì</td><td>Rich Text</td><td>â</td></tr>
-            <tr><td>ìì ì¡°ì¹</td><td>Rich Text</td><td>Workaround</td></tr>
-            <tr><td>ê·¼ë³¸ ìì¸ ì ê±°</td><td>Rich Text</td><td>â</td></tr>
-            <tr><td>ì¬ë° ë°©ì§ íë¡ì¸ì¤</td><td>Rich Text</td><td>â</td></tr>
-            <tr><td>ë´ë¹ì/ì¼ì </td><td>Rich Text</td><td>â</td></tr>
-            <tr><td>ìí</td><td>Select</td><td>ì ì Â· ë¶ì ì¤ Â· ëì± ìë¦½ Â· í´ê²° ìë£</td></tr>
-            <tr><td>ë±ë¡ì¼</td><td>Date</td><td>â</td></tr>
+            <tr><td>문의 요약</td><td>Title</td><td>페이지 제목</td></tr>
+            <tr><td>시스템 영역</td><td>Select</td><td>SYS-01 청약/계약관리 · SYS-02 보험료 계산/수납 · SYS-99 기타</td></tr>
+            <tr><td>결함 유형</td><td>Select</td><td>데이터 오류 · 프로세스 오류 · 인터페이스 오류 · 권한/인증 오류 · 배치/야간 오류 · 기타</td></tr>
+            <tr><td>심각도</td><td>Select</td><td>Critical · High · Medium · Low</td></tr>
+            <tr><td>고객 영향</td><td>Select</td><td>다수 민원 발생 · 개별 민원 · 불편·문의 수준</td></tr>
+            <tr><td>시스템 영향</td><td>Select</td><td>전체/광범위 장애 · 특정 기능 장애 · 경미</td></tr>
+            <tr><td>원인 분석</td><td>Rich Text</td><td>—</td></tr>
+            <tr><td>임시 조치</td><td>Rich Text</td><td>Workaround</td></tr>
+            <tr><td>근본 원인 제거</td><td>Rich Text</td><td>—</td></tr>
+            <tr><td>재발 방지 프로세스</td><td>Rich Text</td><td>—</td></tr>
+            <tr><td>담당자/일정</td><td>Rich Text</td><td>—</td></tr>
+            <tr><td>상태</td><td>Select</td><td>접수 · 분석 중 · 대책 수립 · 해결 완료</td></tr>
+            <tr><td>등록일</td><td>Date</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
       <p class="schema-info">Notion DB ID: <code>69d6f14353fe46a9a01ce43c7379ccb3</code></p>
     </div>
 
-    <!-- ì¤ì  -->
+    <!-- 설정 -->
     <div class="err-panel" id="tab-settings">
       <div class="settings-card">
-        <h3>ð Notion sï¿½ï¿½ë ì¤ì </h3>
+        <h3>🔗 Notion s��동 설정</h3>
         <div class="set-row">
           <label>Notion Integration Token</label>
           <input type="password" id="set-notionToken" placeholder="secret_..." autocomplete="off">
@@ -743,24 +743,24 @@
           <label>Notion DB ID</label>
           <input type="text" id="set-notionDbId" value="69d6f14353fe46a9a01ce43c7379ccb3">
         </div>
-        <button class="set-save-btn" onclick="saveSettings()">ì ì¥ ë° ì°ê²° íì¸</button>
+        <button class="set-save-btn" onclick="saveSettings()">저장 및 연결 확인</button>
       </div>
       <div class="settings-card">
-        <h3>ð¤ Claude API ì¤ì  (Vision ë¶ìì©)</h3>
+        <h3>🤖 Claude API 설정 (Vision 분석용)</h3>
         <div class="set-row">
           <label>Claude API Key</label>
           <input type="password" id="set-claudeKey" placeholder="sk-ant-..." autocomplete="off">
         </div>
-        <button class="set-save-btn" onclick="saveSettings()">ì ì¥</button>
+        <button class="set-save-btn" onclick="saveSettings()">저장</button>
       </div>
       <div class="settings-card">
-        <h3>ð êµ¬ê¸ ìºë¦°ë ì¤ì </h3>
+        <h3>📅 구글 캘린더 설정</h3>
         <div class="set-row">
-          <label>ìºë¦°ë URL</label>
+          <label>캘린더 URL</label>
           <input type="url" id="set-calendarUrl" placeholder="https://calendar.google.com" autocomplete="off">
         </div>
-        <p style="font-size:12px;color:var(--gray-text);margin-top:6px;">í ê³µì  ìºë¦°ë URL ëë ê¸°ë³¸ êµ¬ê¸ ìºë¦°ë URLì ìë ¥íì¸ì. ë¹ìëë©´ calendar.google.comì¼ë¡ ì´ëí©ëë¤.</p>
-        <button class="set-save-btn" onclick="saveSettings()">ì ì¥</button>
+        <p style="font-size:12px;color:var(--gray-text);margin-top:6px;">팀 공유 캘린더 URL 또는 기본 구글 캘린더 URL을 입력하세요. 비워두면 calendar.google.com으로 이동합니다.</p>
+        <button class="set-save-btn" onclick="saveSettings()">저장</button>
       </div>
     </div>
   </div>
@@ -769,7 +769,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// âââ NAVIGATION (íì´ë í¸ëì§ì) âââ
+// ═══ NAVIGATION (페이드 트랜지션) ═══
 function openCalendar() {
   const calUrl = localStorage.getItem('calendarUrl') || 'https://calendar.google.com';
   window.open(calUrl, '_blank');
@@ -779,24 +779,24 @@ function showView(view) {
   const landing = document.getElementById('landing');
   const target  = document.getElementById('view-' + view);
 
-  // 1) ëë© íì´ì§ í´ì¥
+  // 1) 랜딩 페이지 퇴장
   landing.classList.add('page-exit');
 
   setTimeout(() => {
     landing.style.display = 'none';
     landing.classList.remove('page-exit');
 
-    // 2) ëª©í ë·° ë±ì¥
+    // 2) 목표 뷰 등장
     target.style.display = 'block';
     target.classList.add('page-enter');
     setTimeout(() => target.classList.remove('page-enter'), 350);
 
-    // í¤ë ìë°ì´í¸
+    // 헤더 업데이트
     document.getElementById('backBtn').classList.add('show');
     if (view === 'checker') {
-      document.getElementById('headerBadge').textContent = 'íë©´ ìí¥ë ì²´ì»¤';
+      document.getElementById('headerBadge').textContent = '화면 영향도 체커';
     } else {
-      document.getElementById('headerBadge').textContent = 'ê³ ê° ë¬¸ì ìë¬ ê´ë¦¬';
+      document.getElementById('headerBadge').textContent = '고객 문의 에러 관리';
       initErrorView();
     }
   }, 250);
@@ -809,95 +809,95 @@ function goHome() {
 
   if (!activeView) return;
 
-  // 1) íì¬ ë·° í´ì¥
+  // 1) 현재 뷰 퇴장
   activeView.classList.add('page-exit');
 
   setTimeout(() => {
     activeView.style.display = 'none';
     activeView.classList.remove('page-exit');
 
-    // 2) ëë© ë±ì¥
+    // 2) 랜딩 등장
     const landing = document.getElementById('landing');
     landing.style.display = 'block';
     landing.classList.add('page-enter');
     setTimeout(() => landing.classList.remove('page-enter'), 350);
 
     document.getElementById('backBtn').classList.remove('show');
-    document.getElementById('headerBadge').textContent = 'ìë¬´ í¨ì¨í ëêµ¬';
+    document.getElementById('headerBadge').textContent = '업무 효율화 도구';
   }, 250);
 }
 
-// âââ CHECKER DB âââ
+// ═══ CHECKER DB ═══
 const DB_INLINE = [
-  { screenId:"MAIN0000M01", screenName:"ëí í ë©ì¸", channel:"ëíííì´ì§", figmaNodeId:"16:421",
-    products:["ì íSOLì²ìí´ì¸ì¬íë³´í","ì íSOLì²ìì´ì ìë³´í(ë¬´ë°°ë¹)","ì íSOLì²ìê±´ê°ë³´í(ë¬´ë°°ë¹)(ìëê°±ì í)","ì íSOLëÂ·ì¬ì¥ë³´í","ì íSOLìë³´í","ì íSOLë©´ì­ì§íë³´í","ì íSOLì£¼ííì¬ë³´í(ë¬´ë°°ë¹)","ì íSOLì²ìì¤ììë£ë³´í(ë¬´ë°°ë¹)","ì íSOLê¸ìµìì¬ë³´í","ë¯¸ëê³¨íë³´í","ë¯¸ëì´ëë³´í","ì íSOLí´ì¸ì¥ê¸°ì²´ë¥ë³´í","ì íSOLì¼ë³¸ì¬íë³´í","ì íSOLêµ­ë´ì¬íë³´í","ë¯¸ëìíë³´í"],
-    exposureLocations:["ë©ì¸ ìí ìì´ì½ ê·¸ë¦¬ë"] },
-  { screenId:"PRD20000M01", screenName:"í´ì¸ì¬íë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLì²ìí´ì¸ì¬íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD20001M01", screenName:"ì¼ë³¸ì¬íë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLì¼ë³¸ì¬íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD20002M01", screenName:"êµ­ë´ì¬íë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLêµ­ë´ì¬íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD30000M01", screenName:"í´ì¸ì¥ê¸°ì²´ë¥ë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLí´ì¸ì¥ê¸°ì²´ë¥ë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD50000M01", screenName:"ì´ì ìë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLì²ìì´ì ìë³´í(ë¬´ë°°ë¹)"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD70000M01", screenName:"ê±´ê°ë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLì²ìê±´ê°ë³´í(ë¬´ë°°ë¹)(ìëê°±ì í)"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD70000M02", screenName:"ëì¬ì¥ë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLëÂ·ì¬ì¥ë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD70000M03", screenName:"ìë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLìë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD70000M04", screenName:"ë©´ì­ì§íë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLë©´ì­ì§íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD80000M01", screenName:"íì¬ë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLì£¼ííì¬ë³´í(ë¬´ë°°ë¹)"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD12000M01", screenName:"ì¤ììë£ë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLì²ìì¤ììë£ë³´í(ë¬´ë°°ë¹)"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD11000M01", screenName:"ê¸ìµìì¬ë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ì íSOLê¸ìµìì¬ë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD11001M01", screenName:"ë¯¸ëê³¨íë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ë¯¸ëê³¨íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"PRD11004M01", screenName:"ë¯¸ëì´ëë³´í ìíìë´", channel:"ëíííì´ì§",
-    products:["ë¯¸ëì´ëë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_HMEHMEHME_M01", screenName:"ë¤ì´ë í¸ í ë©ì¸", channel:"ë¤ì´ë í¸", figmaNodeId:"20:566",
-    products:["ì íSOLì²ìê±´ê°ë³´í(ë¬´ë°°ë¹)(ìëê°±ì í)","ì íSOLëÂ·ì¬ì¥ë³´í","ì íSOLìë³´í","ì íSOLë©´ì­ì§íë³´í","ì íSOLì²ìì´ì ìë³´í(ë¬´ë°°ë¹)","ë¯¸ëìíë³´í"],
-    exposureLocations:["ìí ëª©ë¡ ì¹ì (ì´ë/ìí ì¹´íê³ ë¦¬)"] },
-  { screenId:"DIR_HMEHMEHME_M01_1", screenName:"ë¤ì´ë í¸ ìí ëª©ë¡", channel:"ë¤ì´ë í¸", figmaNodeId:"20:553",
-    products:["ì íSOLì²ìê±´ê°ë³´í(ë¬´ë°°ë¹)(ìëê°±ì í)","ì íSOLëÂ·ì¬ì¥ë³´í","ì íSOLìë³´í","ì íSOLë©´ì­ì§íë³´í","ì íSOLì²ìì´ì ìë³´í(ë¬´ë°°ë¹)","ë¯¸ëìíë³´í","ë¯¸ëê³¨íë³´í","ë¯¸ëì´ëë³´í"],
-    exposureLocations:["ì ì²´ ìí ì¹´ë ëª©ë¡"] },
-  { screenId:"DIR_HMEHMEHME_M01_3", screenName:"ë¤ì´ë í¸ ë§ì´ í­", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLì²ìê±´ê°ë³´í(ë¬´ë°°ë¹)(ìëê°±ì í)","ì íSOLì²ìì´ì ìë³´í(ë¬´ë°°ë¹)","ì íSOLì²ìí´ì¸ì¬íë³´í","ì íSOLì£¼ííì¬ë³´í(ë¬´ë°°ë¹)","ì íSOLì²ìì¤ììë£ë³´í(ë¬´ë°°ë¹)"],
-    exposureLocations:["ë§ì´í­ ì¶ì²ë³´í ì½íì¸  ì¹ì (ì¤ìì´í)"] },
-  { screenId:"DIR_HMEHMEHME_M03", screenName:"ë¤ì´ë í¸ íí í­", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLì²ìì´ì ìë³´í(ë¬´ë°°ë¹)","ì íSOLì²ìê±´ê°ë³´í(ë¬´ë°°ë¹)(ìëê°±ì í)"],
-    exposureLocations:["ì í´ íí ë°°ë"] },
-  { screenId:"DIR_PDRFDIFDI_M01", screenName:"ë¤ì´ë í¸ ì´ì ìë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLì²ìì´ì ìë³´í(ë¬´ë°°ë¹)"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRSHISHI_M01", screenName:"ë¤ì´ë í¸ ì¢í©ê±´ê°ë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLì²ìê±´ê°ë³´í(ë¬´ë°°ë¹)(ìëê°±ì í)"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRSHISHI_M02", screenName:"ë¤ì´ë í¸ ëì¬ì¥ë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLëÂ·ì¬ì¥ë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRSHISHI_M03", screenName:"ë¤ì´ë í¸ ìë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLìë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRSHISHI_M04", screenName:"ë¤ì´ë í¸ ë©´ì­ì§íë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLë©´ì­ì§íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRSIISII_M01", screenName:"ë¤ì´ë í¸ ì¤ììë£ë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLì²ìì¤ììë£ë³´í(ë¬´ë°°ë¹)"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRHFIHFI_M01", screenName:"ë¤ì´ë í¸ ì£¼ííì¬ë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLì£¼ííì¬ë³´í(ë¬´ë°°ë¹)"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDROTIOTI_M01", screenName:"ë¤ì´ë í¸ í´ì¸ì¬íë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLì²ìí´ì¸ì¬íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDROTIJPN_M01", screenName:"ë¤ì´ë í¸ ì¼ë³¸ì¬íë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLì¼ë³¸ì¬íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRDTIDTI_M01", screenName:"ë¤ì´ë í¸ êµ­ë´ì¬íë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLêµ­ë´ì¬íë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRCLICLI_M01", screenName:"ë¤ì´ë í¸ ë¯¸ëìíë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸", figmaNodeId:"43:895",
-    products:["ë¯¸ëìíë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª íì´í","ì¼ì´ì í ì¹ì","ë¸ëëë©ìì§"] },
-  { screenId:"DIR_PDRLTIOSI_M01", screenName:"ë¤ì´ë í¸ í´ì¸ì¥ê¸°ì²´ë¥ë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLí´ì¸ì¥ê¸°ì²´ë¥ë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] },
-  { screenId:"DIR_PDRFINFIN_M01", screenName:"ë¤ì´ë í¸ ê¸ìµìì¬ë³´í ìíë©ì¸", channel:"ë¤ì´ë í¸",
-    products:["ì íSOLê¸ìµìì¬ë³´í"], exposureLocations:["íì´ë¡ë°°ë","ìíëª","ê°ìíê¸°ë²í¼"] }
+  { screenId:"MAIN0000M01", screenName:"대표 홈 메인", channel:"대표홈페이지", figmaNodeId:"16:421",
+    products:["신한SOL처음해외여행보험","신한SOL처음운전자보험(무배당)","신한SOL처음건강보험(무배당)(자동갱신형)","신한SOL뇌·심장보험","신한SOL암보험","신한SOL면역질환보험","신한SOL주택화재보험(무배당)","신한SOL처음실손의료보험(무배당)","신한SOL금융안심보험","미니골프보험","미니운동보험","신한SOL해외장기체류보험","신한SOL일본여행보험","신한SOL국내여행보험","미니생활보험"],
+    exposureLocations:["메인 상품 아이콘 그리드"] },
+  { screenId:"PRD20000M01", screenName:"해외여행보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL처음해외여행보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD20001M01", screenName:"일본여행보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL일본여행보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD20002M01", screenName:"국내여행보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL국내여행보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD30000M01", screenName:"해외장기체류보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL해외장기체류보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD50000M01", screenName:"운전자보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL처음운전자보험(무배당)"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD70000M01", screenName:"건강보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL처음건강보험(무배당)(자동갱신형)"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD70000M02", screenName:"뇌심장보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL뇌·심장보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD70000M03", screenName:"암보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL암보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD70000M04", screenName:"면역질환보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL면역질환보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD80000M01", screenName:"화재보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL주택화재보험(무배당)"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD12000M01", screenName:"실손의료보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL처음실손의료보험(무배당)"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD11000M01", screenName:"금융안심보험 상품안내", channel:"대표홈페이지",
+    products:["신한SOL금융안심보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD11001M01", screenName:"미니골프보험 상품안내", channel:"대표홈페이지",
+    products:["미니골프보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"PRD11004M01", screenName:"미니운동보험 상품안내", channel:"대표홈페이지",
+    products:["미니운동보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_HMEHMEHME_M01", screenName:"다이렉트 홈 메인", channel:"다이렉트", figmaNodeId:"20:566",
+    products:["신한SOL처음건강보험(무배당)(자동갱신형)","신한SOL뇌·심장보험","신한SOL암보험","신한SOL면역질환보험","신한SOL처음운전자보험(무배당)","미니생활보험"],
+    exposureLocations:["상품 목록 섹션 (운동/생활 카테고리)"] },
+  { screenId:"DIR_HMEHMEHME_M01_1", screenName:"다이렉트 상품 목록", channel:"다이렉트", figmaNodeId:"20:553",
+    products:["신한SOL처음건강보험(무배당)(자동갱신형)","신한SOL뇌·심장보험","신한SOL암보험","신한SOL면역질환보험","신한SOL처음운전자보험(무배당)","미니생활보험","미니골프보험","미니운동보험"],
+    exposureLocations:["전체 상품 카드 목록"] },
+  { screenId:"DIR_HMEHMEHME_M01_3", screenName:"다이렉트 마이 탭", channel:"다이렉트",
+    products:["신한SOL처음건강보험(무배당)(자동갱신형)","신한SOL처음운전자보험(무배당)","신한SOL처음해외여행보험","신한SOL주택화재보험(무배당)","신한SOL처음실손의료보험(무배당)"],
+    exposureLocations:["마이탭 추천보험 콘텐츠 섹션 (스와이프)"] },
+  { screenId:"DIR_HMEHMEHME_M03", screenName:"다이렉트 혜택 탭", channel:"다이렉트",
+    products:["신한SOL처음운전자보험(무배당)","신한SOL처음건강보험(무배당)(자동갱신형)"],
+    exposureLocations:["제휴 혜택 배너"] },
+  { screenId:"DIR_PDRFDIFDI_M01", screenName:"다이렉트 운전자보험 상품메인", channel:"다이렉트",
+    products:["신한SOL처음운전자보험(무배당)"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRSHISHI_M01", screenName:"다이렉트 종합건강보험 상품메인", channel:"다이렉트",
+    products:["신한SOL처음건강보험(무배당)(자동갱신형)"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRSHISHI_M02", screenName:"다이렉트 뇌심장보험 상품메인", channel:"다이렉트",
+    products:["신한SOL뇌·심장보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRSHISHI_M03", screenName:"다이렉트 암보험 상품메인", channel:"다이렉트",
+    products:["신한SOL암보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRSHISHI_M04", screenName:"다이렉트 면역질환보험 상품메인", channel:"다이렉트",
+    products:["신한SOL면역질환보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRSIISII_M01", screenName:"다이렉트 실손의료보험 상품메인", channel:"다이렉트",
+    products:["신한SOL처음실손의료보험(무배당)"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRHFIHFI_M01", screenName:"다이렉트 주택화재보험 상품메인", channel:"다이렉트",
+    products:["신한SOL주택화재보험(무배당)"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDROTIOTI_M01", screenName:"다이렉트 해외여행보험 상품메인", channel:"다이렉트",
+    products:["신한SOL처음해외여행보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDROTIJPN_M01", screenName:"다이렉트 일본여행보험 상품메인", channel:"다이렉트",
+    products:["신한SOL일본여행보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRDTIDTI_M01", screenName:"다이렉트 국내여행보험 상품메인", channel:"다이렉트",
+    products:["신한SOL국내여행보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRCLICLI_M01", screenName:"다이렉트 미니생활보험 상품메인", channel:"다이렉트", figmaNodeId:"43:895",
+    products:["미니생활보험"], exposureLocations:["히어로배너","상품명 타이틀","케어선택 섹션","브랜드메시지"] },
+  { screenId:"DIR_PDRLTIOSI_M01", screenName:"다이렉트 해외장기체류보험 상품메인", channel:"다이렉트",
+    products:["신한SOL해외장기체류보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] },
+  { screenId:"DIR_PDRFINFIN_M01", screenName:"다이렉트 금융안심보험 상품메인", channel:"다이렉트",
+    products:["신한SOL금융안심보험"], exposureLocations:["히어로배너","상품명","가입하기버튼"] }
 ];
 const HIGH_SCREENS = new Set(["MAIN0000M01","DIR_HMEHMEHME_M01","DIR_HMEHMEHME_M01_1","DIR_HMEHMEHME_M01_3","DIR_PDRCLICLI_M01"]);
 
@@ -932,28 +932,28 @@ function doSearch() {
   matched.sort((a,b)=>(HIGH_SCREENS.has(a.screenId)?0:1)-(HIGH_SCREENS.has(b.screenId)?0:1));
   const highCnt = matched.filter(s=>HIGH_SCREENS.has(s.screenId)).length;
   document.getElementById('resultCount').innerHTML =
-    `<strong>${matched.length}ê°</strong> íë©´ ë¸ì¶ ì¤ â <span style="color:var(--red)">ð´ HIGH ${highCnt}ê°</span> ì¦ì ìì  íì`;
-  if (!matched.length) { document.getElementById('results').innerHTML='<div class="empty">ê²ì ê²°ê³¼ê° ììµëë¤</div>'; return; }
+    `<strong>${matched.length}개</strong> 화면 노출 중 — <span style="color:var(--red)">🔴 HIGH ${highCnt}개</span> 즉시 수정 필요`;
+  if (!matched.length) { document.getElementById('results').innerHTML='<div class="empty">검색 결과가 없습니다</div>'; return; }
   document.getElementById('results').innerHTML = matched.map(s => {
     const isHigh = HIGH_SCREENS.has(s.screenId);
     const chips = s.products.filter(p=>p.toLowerCase().includes(kw)).map(p=>`<span class="product-chip matched">${p}</span>`).join('');
-    const figmaLink = s.figmaNodeId ? `<a href="https://www.figma.com/board/Qo2n8H7LkzcOEcDLGjQl5P/?node-id=${s.figmaNodeId}" target="_blank" style="font-size:11px;color:var(--gray-text);margin-left:6px;">ð¨ FigJam</a>` : '';
+    const figmaLink = s.figmaNodeId ? `<a href="https://www.figma.com/board/Qo2n8H7LkzcOEcDLGjQl5P/?node-id=${s.figmaNodeId}" target="_blank" style="font-size:11px;color:var(--gray-text);margin-left:6px;">🎨 FigJam</a>` : '';
     return `<div class="result-card ${isHigh?'high':'medium'}">
       <div class="card-header">
-        <span class="badge ${s.channel==='ë¤ì´ë í¸'?'badge-dir':'badge-rep'}">${s.channel==='ë¤ì´ë í¸'?'ë¤ì´ë í¸':'ëíí'}</span>
+        <span class="badge ${s.channel==='다이렉트'?'badge-dir':'badge-rep'}">${s.channel==='다이렉트'?'다이렉트':'대표홈'}</span>
         <span class="badge ${isHigh?'badge-high':'badge-medium'}">${isHigh?'HIGH':'MEDIUM'}</span>
         <span class="screen-id">${s.screenId}</span>${figmaLink}
       </div>
       <div class="screen-name">${s.screenName}</div>
       <div class="card-body">
-        <div class="locations">ð ${(s.exposureLocations||[]).join(' Â· ')}</div>
+        <div class="locations">📍 ${(s.exposureLocations||[]).join(' · ')}</div>
         ${chips?`<div class="products-list">${chips}</div>`:''}
       </div>
     </div>`;
   }).join('');
 }
 
-// âââ ERROR MANAGEMENT âââ
+// ═══ ERROR MANAGEMENT ═══
 let imageBase64=null, imageMediaType='image/jpeg', settings={};
 function loadSettings() {
   try {
@@ -966,7 +966,7 @@ function loadSettings() {
     if(nd&&settings.notionDbId) nd.value=settings.notionDbId;
     if(ck&&settings.claudeKey) ck.value=settings.claudeKey;
     if(cu&&settings.calendarUrl) cu.value=settings.calendarUrl;
-    // calendarUrlì ëë¦½ì ì¼ë¡ë ì ì¥
+    // calendarUrl은 독립적으로도 저장
     const saved=localStorage.getItem('calendarUrl');
     if(cu&&saved) cu.value=saved;
   } catch(e){}
@@ -982,19 +982,19 @@ function saveSettings() {
   localStorage.setItem('ez-settings', JSON.stringify(settings));
   if(calUrl) localStorage.setItem('calendarUrl', calUrl);
   else localStorage.removeItem('calendarUrl');
-  showToast('ì¤ì  ì ì¥ ìë£'); checkNotionStatus();
+  showToast('설정 저장 완료'); checkNotionStatus();
 }
 function initErrorView() { loadSettings(); checkNotionStatus(); }
 async function checkNotionStatus() {
   const dot=document.getElementById('statusDot'), txt=document.getElementById('statusText');
-  dot.className='status-dot'; txt.textContent='Notion ì°ê²° ìí íì¸ ì¤...';
-  if(!settings.notionToken){ dot.className='status-dot err'; txt.textContent='ì¤ì  í­ìì Notion Integration Tokenì ìë ¥íì¸ì'; return; }
+  dot.className='status-dot'; txt.textContent='Notion 연결 상태 확인 중...';
+  if(!settings.notionToken){ dot.className='status-dot err'; txt.textContent='설정 탭에서 Notion Integration Token을 입력하세요'; return; }
   try {
     const p=await fetch(`https://api.notion.com/v1/databases/${settings.notionDbId||'69d6f14353fe46a9a01ce43c7379ccb3'}`,
       {headers:{'Authorization':`Bearer ${settings.notionToken}`,'Notion-Version':'2022-06-28'}});
     dot.className=r.ok?'status-dot ok':'status-dot err';
-    txt.textContent=r.ok?'Notion ì°ê²°ë¨ â ë°ë³µê²°í¨ ê´ë¦¬ DB':`ì°ê²° ì¤í¨ (${r.status}) â ì¤ì ì íì¸íì¸ì`;
-  } catch(e){ dot.className='status-dot err'; txt.textContent='ì°ê²° ì¤ë¥'; }
+    txt.textContent=r.ok?'Notion 연결됨 — 반복결함 관리 DB':`연결 실패 (${r.status}) — 설정을 확인하세요`;
+  } catch(e){ dot.className='status-dot err'; txt.textContent='연결 오류'; }
 }
 function switchErrTab(id, btn) {
   document.querySelectorAll('.err-tab').forEach(t=>t.classList.remove('active'));
@@ -1033,12 +1033,12 @@ function removeImage(){
 }
 async function analyzeImage(){
   if(!imageBase64) return;
-  if(!settings.claudeKey){ showToast('ì¤ì  í­ìì Claude API Keyë¥¼ ë¨¼ì  ìë ¥íì¸ì'); return; }
+  if(!settings.claudeKey){ showToast('설정 탭에서 Claude API Key를 먼저 입력하세요'); return; }
   const btn=document.getElementById('analyzeBtn');
-  btn.disabled=true; btn.textContent='ë¶ì ì¤...';
+  btn.disabled=true; btn.textContent='분석 중...';
   try {
-    const prompt=`ì´ ë³´íì¬ ê³ ê° ë¬¸ì ë©ì¼ ì´ë¯¸ì§ë¥¼ ë¶ìí´ì ìë JSONë§ ë°íí´ì¤ (íêµ­ì´):
-{"title":"ë¬¸ì ìì½ 1~2ì¤","sysArea":"SYS-01 ì²­ì½/ê³ì½ê´ë¦¬ ëë SYS-02 ë³´íë£ ê³ì°/ìë© ëë SYS-99 ê¸°í","defectType":"ë°ì´í° ì¤ë¥ ëë íë¡ì¸ì¤ ì¤ë¥ ëë ì¸í°íì´ì¤ ì¤ë¥ ëë ê¶í/ì¸ì¦ ì¤ë¥ ëë ë°°ì¹/ì¼ê° ì¤ë¥ ëë ê¸°í","severity":"Critical ëë High ëë Medium ëë Low","custImpact":"ë¤ì ë¯¼ì ë°ì ëë ê°ë³ ë¯¼ì ëë ë¶í¸Â·ë¬¸ì ìì¤","sysImpact":"ì ì²´/ê´ë²ì ì¥ì  ëë í¹ì  ê¸°ë¥ ì¥ì  ëë ê²½ë¯¸","cause":"ì¶ì  ìì¸ 2~3ë¬¸ì¥","workaround":"ìì ì¡°ì¹ ë°©ì"}`;
+    const prompt=`이 보험사 고객 문의 메일 이미지를 분석해서 아래 JSON만 반환해줘 (한국어):
+{"title":"문의 요약 1~2줄","sysArea":"SYS-01 청약/계약관리 또는 SYS-02 보험료 계산/수납 또는 SYS-99 기타","defectType":"데이터 오류 또는 프로세스 오류 또는 인터페이스 오류 또는 권한/인증 오류 또는 배치/야간 오류 또는 기타","severity":"Critical 또는 High 또는 Medium 또는 Low","custImpact":"다수 민원 발생 또는 개별 민원 또는 불편·문의 수준","sysImpact":"전체/광범위 장애 또는 특정 기능 장애 또는 경미","cause":"추정 원인 2~3문장","workaround":"임시 조치 방안"}`;
     const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'x-api-key':settings.claudeKey,'anthropic-version':'2023-06-01','content-type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
@@ -1056,10 +1056,10 @@ async function analyzeImage(){
     setSelVal('f-sysImpact',json.sysImpact);
     document.getElementById('f-cause').value=json.cause||'';
     document.getElementById('f-workaround').value=json.workaround||'';
-    document.getElementById('f-status').value='ì ì';
+    document.getElementById('f-status').value='접수';
     document.getElementById('analysisResult').style.display='block';
-  } catch(e){ showToast('ë¶ì ì¤ë¥: '+e.message); }
-  finally { btn.disabled=false; btn.textContent='AI ë¶ì ìì â'; }
+  } catch(e){ showToast('분석 오류: '+e.message); }
+  finally { btn.disabled=false; btn.textContent='AI 분석 시작 →'; }
 }
 function setSelVal(id,val){
   if(!val) return;
@@ -1068,69 +1068,69 @@ function setSelVal(id,val){
 }
 async function saveToNotion(){
   const token=settings.notionToken, dbId=settings.notionDbId||'69d6f14353fe46a9a01ce43c7379ccb3';
-  if(!token){ showToast('ì¤ì  í­ìì Notion Tokenì ìë ¥íì¸ì'); return; }
+  if(!token){ showToast('설정 탭에서 Notion Token을 입력하세요'); return; }
   const title=document.getElementById('f-title').value.trim();
-  if(!title){ showToast('ë¬¸ì ìì½ì ìë ¥íì¸ì'); return; }
+  if(!title){ showToast('문의 요약을 입력하세요'); return; }
   const btn=document.getElementById('saveBtn');
-  btn.disabled=true; btn.innerHTML='ì ì¥ ì¤...';
+  btn.disabled=true; btn.innerHTML='저장 중...';
   try {
     const today=new Date().toISOString().split('T')[0];
     const res=await fetch('https://api.notion.com/v1/pages',{
       method:'POST',
       headers:{'Authorization':`Bearer ${token}`,'Notion-Version':'2022-06-28','Content-Type':'application/json'},
       body:JSON.stringify({parent:{database_id:dbId},properties:{
-        "ë¬¸ì ìì½":{title:[{text:{content:title}}]},
-        "ìì¤í ìì­":{select:{name:document.getElementById('f-sysArea').value}},
-        "ê²°í¨ ì í":{select:{name:document.getElementById('f-defectType').value}},
-        "ì¬ê°ë":{select:{name:document.getElementById('f-severity').value}},
-        "ê³ ê° ìí¥":{select:{name:document.getElementById('f-custImpact').value}},
-        "ìì¤í ìí¥":{select:{name:document.getElementById('f-sysImpact').value}},
-        "ìí":{select:{name:document.getElementById('f-status').value}},
-        "ë±ë¡ì¼":{date:{start:today}},
-        "ìì¸ ë¶ì":{rich_text:[{text:{content:document.getElementById('f-cause').value}}]},
-        "ìì ì¡°ì¹":{rich_text:[{text:{content:document.getElementById('f-workaround').value}}]},
+        "문의 요약":{title:[{text:{content:title}}]},
+        "시스템 영역":{select:{name:document.getElementById('f-sysArea').value}},
+        "결함 유형":{select:{name:document.getElementById('f-defectType').value}},
+        "심각도":{select:{name:document.getElementById('f-severity').value}},
+        "고객 영향":{select:{name:document.getElementById('f-custImpact').value}},
+        "시스템 영향":{select:{name:document.getElementById('f-sysImpact').value}},
+        "상태":{select:{name:document.getElementById('f-status').value}},
+        "등록일":{date:{start:today}},
+        "원인 분석":{rich_text:[{text:{content:document.getElementById('f-cause').value}}]},
+        "임시 조치":{rich_text:[{text:{content:document.getElementById('f-workaround').value}}]},
       }})
     });
     if(!res.ok){const e=await res.json();throw new Error(e.message||res.status);}
-    showToast('â Notion DB ì ì¥ ìë£!');
+    showToast('✅ Notion DB 저장 완료!');
     removeImage(); document.getElementById('analysisResult').style.display='none';
-  } catch(e){ showToast('ì ì¥ ì¤ë¥: '+e.message); }
-  finally { btn.disabled=false; btn.innerHTML='<span>ð¥</span> Notion DBì ì ì¥'; }
+  } catch(e){ showToast('저장 오류: '+e.message); }
+  finally { btn.disabled=false; btn.innerHTML='<span>📥</span> Notion DB에 저장'; }
 }
 async function loadErrList(){
   const token=settings.notionToken, dbId=settings.notionDbId||'69d6f14353fe46a9a01ce43c7379ccb3';
   const box=document.getElementById('errListContent');
-  if(!token){box.innerHTML='<div class="empty">ì¤ì  í­ìì Notion Tokenì ìë ¥íì¸ì</div>';return;}
-  box.innerHTML='<div class="empty">ë¶ë¬ì¤ë ì¤...</div>';
+  if(!token){box.innerHTML='<div class="empty">설정 탭에서 Notion Token을 입력하세요</div>';return;}
+  box.innerHTML='<div class="empty">불러오는 중...</div>';
   try {
     const res=await fetch(`https://api.notion.com/v1/databases/${dbId}/query`,{
       method:'POST',
       headers:{'Authorization':`Bearer ${token}`,'Notion-Version':'2022-06-28','Content-Type':'application/json'},
-      body:JSON.stringify({sorts:[{property:'ë±ë¡ì¼',direction:'descending'}],page_size:50})
+      body:JSON.stringify({sorts:[{property:'등록일',direction:'descending'}],page_size:50})
     });
-    if(!res.ok) throw new Error(`ì¤ë¥: ${res.status}`);
+    if(!res.ok) throw new Error(`오류: ${res.status}`);
     const data=await res.json();
-    if(!data.results.length){box.innerHTML='<div class="empty">ë±ë¡ë ìë¬ê° ììµëë¤</div>';return;}
+    if(!data.results.length){box.innerHTML='<div class="empty">등록된 에러가 없습니다</div>';return;}
     box.innerHTML=data.results.map(page=>{
       const p=page.properties;
-      const ttl=p['ë¬¸ì ìì½']?.title?.[0]?.text?.content||'(ì ëª© ìì)';
-      const sev=p['ì¬ê°ë']?.select?.name||'';
-      const st=p['ìí']?.select?.name||'';
-      const area=p['ìì¤í ìì­']?.select?.name||'';
-      const type=p['ê²°í¨ ì í']?.select?.name||'';
-      const date=p['ë±ë¡ì¼']?.date?.start||'';
+      const ttl=p['문의 요약']?.title?.[0]?.text?.content||'(제목 없음)';
+      const sev=p['심각도']?.select?.name||'';
+      const st=p['상태']?.select?.name||'';
+      const area=p['시스템 영역']?.select?.name||'';
+      const type=p['결함 유형']?.select?.name||'';
+      const date=p['등록일']?.date?.start||'';
       return `<div class="err-item ${sev}">
         <div class="err-item-hd">
           <span class="sev-badge sev-${sev}">${sev}</span>
           <span class="st-badge">${st}</span>
           <span style="font-size:11px;color:var(--gray-text)">${area}</span>
-          <span style="font-size:11px;color:var(--gray-3)">Â· ${type}</span>
+          <span style="font-size:11px;color:var(--gray-3)">· ${type}</span>
         </div>
         <div class="err-title-txt">${ttl}</div>
         <div class="err-meta-txt">${date}</div>
       </div>`;
     }).join('');
-  } catch(e){ box.innerHTML=`<div class="empty" style="color:var(--red)">ë¶ë¬ì¤ê¸° ì¤í¨: ${e.message}</div>`; }
+  } catch(e){ box.innerHTML=`<div class="empty" style="color:var(--red)">불러오기 실패: ${e.message}</div>`; }
 }
 function showToast(msg){
   const t=document.getElementById('toast');
@@ -1157,7 +1157,7 @@ async function doLogin() {
   var errEl = document.getElementById('login-err');
   errEl.textContent = '';
   if (!idVal || !pwVal) {
-    errEl.textContent = 'ìì´ëì ë¹ë°ë²í¸ë¥¼ ìë ¥í´ì£¼ì¸ì.';
+    errEl.textContent = '아이디와 비밀번호를 입력해주세요.';
     return;
   }
   var enc = new TextEncoder();
@@ -1167,7 +1167,7 @@ async function doLogin() {
     sessionStorage.setItem('ez_auth', 'ok');
     document.getElementById('login-overlay').classList.add('hidden');
   } else {
-    errEl.textContent = 'ìì´ë ëë ë¹ë°ë²í¸ê° ì¬ë°ë¥´ì§ ììµëë¤.';
+    errEl.textContent = '아이디 또는 비밀번호가 올바르지 않습니다.';
     document.getElementById('login-pw').value = '';
     document.getElementById('login-pw').focus();
   }
